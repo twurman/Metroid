@@ -3,6 +3,7 @@ guid: b2374b6630081444bb68bf692a4268dc
 TextureImporter:
   fileIDToRecycleName:
     21300000: Samus_Standing
+    21300002: Bullet
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -51,6 +52,16 @@ TextureImporter:
         y: 969
         width: 20
         height: 32
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Bullet
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 326
+        width: 4
+        height: 5
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
