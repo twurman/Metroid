@@ -25,7 +25,6 @@ public class PE_Controller : MonoBehaviour {
 	// Update is called once per frame
 	// Note that we use Update for input but FixedUpdate for physics. This is because Unity input is handled based on Update
 	void Update () {
-		Debug.Log ("in PE_Controller::Update()");
 		vel = peo.vel; // Pull velocity from the PE_Obj
 		grounded = (peo.ground != null);
 		

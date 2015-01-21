@@ -9,12 +9,20 @@ public class SamusMovement : MonoBehaviour
 		public GameObject projectile;
 
 		void Update() {
-			Debug.Log ("in SamusMovement::Update()");
-
 			if (Input.GetButton("Fire") && Time.time > nextFire) {
 				nextFire = Time.time + fireRate;
 				GameObject clone = Instantiate(projectile, transform.position, transform.rotation) as GameObject;
 				clone.rigidbody2D.velocity = new Vector2(transform.localScale.x, 0);
+			}
+		}
+
+		void FixedUpdate() {
+			float hSpeed = Input.GetAxis ("Horizontal");
+			
+			if (hSpeed > 0) {
+				transform.localScale = new Vector3 (1, 1, 1);
+			} else if (hSpeed < 0) {
+				transform.localScale = new Vector3 (-1, 1, 1);
 			}
 		}
 }
