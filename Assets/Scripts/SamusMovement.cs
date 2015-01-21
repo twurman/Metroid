@@ -7,7 +7,7 @@ public class SamusMovement : MonoBehaviour
 		public float SpeedMultiplier = 10.0f;
 		public float vSpeed = 0f;
 		public bool falling = false;
-		public float groundHeight = 0;
+		private float jumpStart = 0;
 
 		public float fireRate = 0.5F;
 		private float nextFire = 0.0F; 
@@ -34,9 +34,12 @@ public class SamusMovement : MonoBehaviour
 				}
 
 
-				if ((falling || vDir <= 0) && position.y > groundHeight) {
+				if (falling || vDir <= 0) {
 					vSpeed -= 0.1f;
 				} else if (vDir > 0) {
+					if(jumpStart == null){
+						jumpStart = position.y;
+					}
 					vSpeed = 1.2f;
 				}
 	
@@ -44,13 +47,33 @@ public class SamusMovement : MonoBehaviour
 
 				this.rigidbody2D.velocity = new Vector2 (hSpeed * SpeedMultiplier, vSpeed * SpeedMultiplier);
 
-				if (position.y > groundHeight + 5) {
+				if (position.y > jumpStart + 5) {
 					falling = true;
-				} else if (position.y < groundHeight) {
-					falling = false;
-					position.y = groundHeight;
-					vSpeed = 0;
-					this.transform.position = position;
-				}
+				} 
+//				else if (position.y < jumpStart) {
+//					falling = false;
+//					position.y = jumpStart;
+//					vSpeed = 0;
+//					this.transform.position = position;
+//				}
+		}
+
+		void OnTriggerEnter(Collider other) {
+			// Ignore collisions of still objects
+			if(vSpeed >= 0) {
+				vSpeed = 0;
+				falling = true;
+			} else {
+				vSpeed = 0;
+				falling = false;
+			}
+		}
+		
+		void OnTriggerStay(Collider other) {
+			OnTriggerEnter(other);
+		}
+		
+		void OnTriggerExit(Collider other) {
+			//do nothing for ground
 		}
 }
