@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class SamusMovement : PE_Controller
+public class SamusMovement : MonoBehaviour
 {
 
 		public float fireRate = 0.5F;
@@ -9,6 +9,8 @@ public class SamusMovement : PE_Controller
 		public GameObject projectile;
 
 		void Update() {
+			Debug.Log ("in SamusMovement::Update()");
+
 			if (Input.GetButton("Fire") && Time.time > nextFire) {
 				nextFire = Time.time + fireRate;
 				GameObject clone = Instantiate(projectile, transform.position, transform.rotation) as GameObject;
