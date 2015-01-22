@@ -5,7 +5,7 @@ using System.Collections;
 
 public class PE_Obj : MonoBehaviour {
 	public bool			still = false;
-	public PE_Collider	coll = PE_Collider.sphere;
+	public PE_Collider	coll = PE_Collider.aabb;
 	public PE_GravType	grav = PE_GravType.constant;
 	
 	public Vector3		acc = Vector3.zero;
@@ -29,7 +29,7 @@ public class PE_Obj : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+
 	}
 	
 	
@@ -103,9 +103,9 @@ public class PE_Obj : MonoBehaviour {
 				if (dir == PE_Dir.down) {
 					// Just resolve to be on top
 					a1 = pos1;
-					a1.y -= transform.lossyScale.y/2f;
+					a1.y -= transform.lossyScale.y * transform.collider.bounds.size.y /2f;
 					b = that.pos1;
-					b.y += that.transform.lossyScale.y/2f;
+					b.y += that.transform.lossyScale.y * that.transform.collider.bounds.size.y /2f;
 					if (b.y > a1.y) {
 						posFinal.y += Mathf.Abs( a1.y - b.y );
 					}
@@ -119,9 +119,9 @@ public class PE_Obj : MonoBehaviour {
 				if (dir == PE_Dir.up) {
 					// Just resolve to be below
 					a1 = pos1;
-					a1.y += transform.lossyScale.y/2f;
+					a1.y += transform.lossyScale.y * transform.collider.bounds.size.y /2f;
 					b = that.pos1;
-					b.y -= that.transform.lossyScale.y/2f;
+					b.y -= that.transform.lossyScale.y * that.transform.collider.bounds.size.y /2f;
 					if (b.y < a1.y) {
 						posFinal.y -= Mathf.Abs( a1.y - b.y );
 					}
@@ -133,42 +133,42 @@ public class PE_Obj : MonoBehaviour {
 				
 				if (dir == PE_Dir.upRight) { // Bottom, Left is the comparison corner
 					a1 = pos1;
-					a1.x += transform.lossyScale.x/2f;
-					a1.y += transform.lossyScale.y/2f;
+					a1.x += transform.lossyScale.x * transform.collider.bounds.size.x /2f;
+					a1.y += transform.lossyScale.y * transform.collider.bounds.size.y /2f;
 					a0 = a1 - delta;
 					b = that.pos1;
-					b.x -= that.transform.lossyScale.x/2f;
-					b.y -= that.transform.localScale.y/2f;
+					b.x -= that.transform.lossyScale.x * that.transform.collider.bounds.size.x /2f;
+					b.y -= that.transform.localScale.y * that.transform.collider.bounds.size.y /2f;
 				}
 				
 				if (dir == PE_Dir.upLeft) { // Bottom, Right is the comparison corner
 					a1 = pos1;
-					a1.x -= transform.lossyScale.x/2f;
-					a1.y += transform.lossyScale.y/2f;
+					a1.x -= transform.lossyScale.x * transform.collider.bounds.size.x /2f;
+					a1.y += transform.lossyScale.y * transform.collider.bounds.size.y /2f;
 					a0 = a1 - delta;
 					b = that.pos1;
-					b.x += that.transform.lossyScale.x/2f;
-					b.y -= that.transform.localScale.y/2f;
+					b.x += that.transform.lossyScale.x * that.transform.collider.bounds.size.x /2f;
+					b.y -= that.transform.localScale.y * that.transform.collider.bounds.size.y /2f;
 				}
 				
 				if (dir == PE_Dir.downLeft) { // Top, Right is the comparison corner
 					a1 = pos1;
-					a1.x -= transform.lossyScale.x/2f;
-					a1.y -= transform.lossyScale.y/2f;
+					a1.x -= transform.lossyScale.x * transform.collider.bounds.size.x /2f;
+					a1.y -= transform.lossyScale.y * transform.collider.bounds.size.y /2f;
 					a0 = a1 - delta;
 					b = that.pos1;
-					b.x += that.transform.lossyScale.x/2f;
-					b.y += that.transform.localScale.y/2f;
+					b.x += that.transform.lossyScale.x * that.transform.collider.bounds.size.x /2f;
+					b.y += that.transform.localScale.y * that.transform.collider.bounds.size.y /2f;
 				}
 				
 				if (dir == PE_Dir.downRight) { // Top, Left is the comparison corner
 					a1 = pos1;
-					a1.x += transform.lossyScale.x/2f;
-					a1.y -= transform.lossyScale.y/2f;
+					a1.x += transform.lossyScale.x * transform.collider.bounds.size.x /2f;
+					a1.y -= transform.lossyScale.y * transform.collider.bounds.size.y /2f;
 					a0 = a1 - delta;
 					b = that.pos1;
-					b.x -= that.transform.lossyScale.x/2f;
-					b.y += that.transform.localScale.y/2f;
+					b.x -= that.transform.lossyScale.x * that.transform.collider.bounds.size.x /2f;
+					b.y += that.transform.localScale.y * that.transform.collider.bounds.size.y /2f;
 				}
 				
 				// In the x dimension, find how far along the line segment between a0 and a1 we need to go to encounter b
