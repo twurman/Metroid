@@ -3,25 +3,30 @@ using System.Collections;
 
 public class Bullet : MonoBehaviour {
 
+    private PE_Obj peo;
+
 	public float velocity = 1.0f;
 	public float maxDistance = 3.0f;
 
+    private bool initial_set = false;
 	private Vector3 initialPosition;
 
 	// Use this for initialization
 	void Start () {
-		this.rigidbody.velocity = new Vector2 (velocity*this.rigidbody.velocity.x, velocity*this.rigidbody.velocity.y);
-		initialPosition = this.rigidbody.position;
+        peo = GetComponent<PE_Obj>();
+		peo.vel = new Vector2 (velocity*peo.vel.x, velocity*peo.vel.y);
 	}
 
 	void FixedUpdate() {
-		if ((this.rigidbody.position - initialPosition).magnitude > maxDistance) {
+        if (!initial_set) {
+            initial_set = true;
+            initialPosition = peo.pos0;
+        }
+
+		if ((peo.pos0 - initialPosition).magnitude > maxDistance) {
+            PhysEngine.objs.Remove(peo);
 			Destroy(this.gameObject);
 		}
 	}
 
-	// Update is called once per frame
-	void Update () {
-		
-	}
 }

@@ -15,21 +15,24 @@ public class SamusMovement : MonoBehaviour
 			if (Input.GetButton("Fire") && Time.time > nextFire) {
 				nextFire = Time.time + fireRate;
 
-				Vector3 bullet_pos;
 				if (Input.GetButton("Vertical")) {
-					bullet_pos = new Vector3(
+                    Vector3 bullet_pos = new Vector3(
 											transform.position.x,
 			                                transform.position.y + BulletOffset_y_vertical,
 											transform.position.z);
 					GameObject clone = Instantiate(projectile, bullet_pos, transform.rotation) as GameObject;
-					clone.rigidbody.velocity = new Vector3(0, 1, 0);
+                    clone.layer = LayerMask.NameToLayer("Player Bullet");
+                    PE_Obj pe = clone.GetComponent<PE_Obj>();
+                    pe.vel = new Vector3(0, 1, 0);
 				} else {
-					bullet_pos = new Vector3(
+                    Vector3 bullet_pos = new Vector3(
 											transform.position.x + (BulletOffset_x * transform.localScale.x),
 			                                transform.position.y + BulletOffset_y,
 											transform.position.z);
 					GameObject clone = Instantiate(projectile, bullet_pos, transform.rotation) as GameObject;
-					clone.rigidbody.velocity = new Vector3(transform.localScale.x, 0, 0);
+                    clone.layer = LayerMask.NameToLayer("Player Bullet");
+                    PE_Obj pe = clone.GetComponent<PE_Obj>();
+                    pe.vel = new Vector3(transform.localScale.x, 0, 0);
 				}
 				
 			}
