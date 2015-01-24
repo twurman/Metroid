@@ -28,6 +28,7 @@ public class Skree : PE_Obj {
 
 
 	void OnTriggerEnter(Collider other) {
+		Debug.Log ("Skree::OnCollisionEnter: " + other.gameObject.name);
 		collided = true;
 	}
 }

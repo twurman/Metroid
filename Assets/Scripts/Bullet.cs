@@ -6,16 +6,16 @@ public class Bullet : MonoBehaviour {
 	public float velocity = 1.0f;
 	public float maxDistance = 3.0f;
 
-	private float initialPosition;
+	private Vector3 initialPosition;
 
 	// Use this for initialization
 	void Start () {
-		this.rigidbody2D.velocity = new Vector2 (velocity*this.rigidbody2D.velocity.x, 0);
-		initialPosition = this.rigidbody2D.position.x;
+		this.rigidbody.velocity = new Vector2 (velocity*this.rigidbody.velocity.x, velocity*this.rigidbody.velocity.y);
+		initialPosition = this.rigidbody.position;
 	}
 
 	void FixedUpdate() {
-		if (Mathf.Abs(this.rigidbody2D.position.x - initialPosition) > maxDistance) {
+		if ((this.rigidbody.position - initialPosition).magnitude > maxDistance) {
 			Destroy(this.gameObject);
 		}
 	}
