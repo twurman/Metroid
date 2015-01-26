@@ -6,10 +6,14 @@ public class PE_Controller : MonoBehaviour {
 	
 	public Vector3	vel;
 	public bool		grounded = false;
+	public float 	maxJumpHeight = 5f;
+	public float	jumpStart = 0f;
+	public bool 	falling;
 	
-	public float	hSpeed = 10;
-	public float	acceleration = 10;
-	public float	jumpVel = 10;
+	public float	hSpeed = 10f;
+	public float	acceleration = 10f;
+	public float	jumpVel = 2f;
+	public float	gravity = 0.1f;
 	public float	airSteeringAmt = 1f;
 	
 	public float	airMomentumX = 1; // 0 for no momentum (i.e. 100% drag), 1 for total momentum
@@ -40,12 +44,40 @@ public class PE_Controller : MonoBehaviour {
 		//		vel.x += vX * accMult.x * acceleration * Time.deltaTime;
 		
 		// Jumping with A (which is x or .)
-		if (Input.GetKeyDown(KeyCode.X) || Input.GetKeyDown(KeyCode.Period)) {
-			// Jump if you're grounded
-			if (grounded) {
+//		Debug.Log (vel.y);
+//		if(grounded){
+//			jumpStart = peo.pos0.y;
+//			falling = false;
+//			if(Input.GetKeyDown(KeyCode.X)){
+//				peo.ground = null;
+//				vel.y = jumpVel;
+//				peo.acc.y = 9.8f;
+//			}
+//		} else if(peo.pos0.y > jumpStart && peo.pos0.y < jumpStart + maxJumpHeight){
+//			if(!(Input.GetButton("Vertical"))){
+//				falling = true;
+//				peo.acc.y = 0;
+//			}
+//		} else if(peo.pos0.y >= jumpStart + maxJumpHeight){
+//			//over max height
+//			falling = true;
+//			peo.acc.y = 0;
+//		}
+
+		if(grounded){
+			jumpStart = peo.pos0.y;
+			falling = false;
+			if(Input.GetKeyDown(KeyCode.X)){
+				peo.ground = null;
 				vel.y = jumpVel;
-				peo.ground = null; // Jumping will set ground = null
+				peo.acc.y = 9.8f;
 			}
+		} else if(!falling && !(Input.GetButton("Vertical"))){
+			falling = true;
+			peo.acc.y = 0;
+		} if(peo.pos0.y >= jumpStart + maxJumpHeight){
+			falling = true;
+			peo.acc.y = 0;
 		}
 		
 		peo.vel = vel;

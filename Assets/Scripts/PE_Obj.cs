@@ -143,7 +143,8 @@ public class PE_Obj : MonoBehaviour {
 				// With AABB collisions, we're usually concerned with corners and deciding which corner to consider when making comparisons.
 				// I believe that this corner should be determined by looking at the velocity of the moving body (this one)
 
-//				Vector3 a0, a1, b, delta, pU; // a0-moving corner last frame, a1-moving corner now, b-comparison corner on other object
+				// Vector3 a0, a1, b, delta, pU; 
+				// a0-moving corner last frame, a1-moving corner now, b-comparison corner on other object
 				a0 = a1 = b = Vector3.zero;	 // Sets a default value to keep the compiler from complaining
 				delta = pos1 - pos0;
 
@@ -193,7 +194,7 @@ public class PE_Obj : MonoBehaviour {
 				if (dir == PE_Dir.upLeft) { // Bottom, Right is the comparison corner
 					a1 = pos1;
 					a1.x -= transform.lossyScale.x * transform.collider.bounds.size.x/2f;
-					a1.y += transform.lossyScale.y* transform.collider.bounds.size.y/2f;
+					a1.y += transform.lossyScale.y * transform.collider.bounds.size.y/2f;
 					a0 = a1 - delta;
 					b = that.pos1;
 					b.x += that.transform.lossyScale.x/2f;
@@ -229,7 +230,6 @@ public class PE_Obj : MonoBehaviour {
 				// Find distance we would have to offset in x or y
 				float offsetX = Mathf.Abs(a1.x - b.x);
 				float offsetY = Mathf.Abs(a1.y - b.y);
-				bool usedX = false;
 
 				// Use pU.y vs. b.y to tell which side of PE_Obj "that" PE_Obj "this" should be on
 				switch (dir) {
@@ -240,7 +240,6 @@ public class PE_Obj : MonoBehaviour {
 						// Handle vel
 						vel.x = 0;
 
-						usedX = true;
 					} else { // hit the bottom
 						posFinal.y -= offsetY;
 						
@@ -256,8 +255,7 @@ public class PE_Obj : MonoBehaviour {
 						
 						// Handle vel
 						vel.x = 0;
-						
-						usedX = true;
+
 					} else { // hit the top
 						posFinal.y += offsetY;
 
@@ -274,8 +272,7 @@ public class PE_Obj : MonoBehaviour {
 						
 						// Handle vel
 						vel.x = 0;
-						
-						usedX = true;
+
 					} else { // hit the bottom
 						posFinal.y -= offsetY;
 						
@@ -291,8 +288,7 @@ public class PE_Obj : MonoBehaviour {
 						
 						// Handle vel
 						vel.x = 0;
-						
-						usedX = true;
+
 					} else { // hit the top
 						posFinal.y += offsetY;
 						
@@ -303,14 +299,6 @@ public class PE_Obj : MonoBehaviour {
 					}
 					break;
 				}
-
-				
-//				if ( (pos1-posFinal).magnitude>1f || (usedX && offsetX > 1) || (!usedX && offsetY > 1) ) {
-//					print ("offX:\t"+offsetX+"\toffY:\t"+offsetY+"\npF:\t"+posFinal+"\na0:\t"+a0+"\na1:\t"+a1+"\n b:\t"+b+"\n u:\t"+u+"\npU:\t"+pU);
-//					EditorApplication.isPaused = true;
-//				} else {
-//					print ((pos1-posFinal).magnitude);
-//				}
 
 				break;
 			}
