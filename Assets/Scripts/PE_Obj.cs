@@ -34,7 +34,7 @@ public class PE_Obj : MonoBehaviour {
 
 	}
 
-    bool ignoreCollision(Collider other) {
+    bool IgnoreCollision(Collider other) {
 		bool ignore = (other.GetComponent<Enemy> () != null && gameObject.layer == LayerMask.NameToLayer ("Player Bullet")) ||
 						(this.GetComponent<Enemy> () != null && other.gameObject.layer == LayerMask.NameToLayer ("Player Bullet"));
         return ignore;
@@ -189,7 +189,7 @@ public class PE_Obj : MonoBehaviour {
 				// Use pU.y vs. b.y to tell which side of PE_Obj "that" PE_Obj "this" should be on
 				switch (dir) {
 				case PE_Dir.upRight:
-					if (a1.x > b.x && a1.y > b.y) { // hit the left side
+					if (a0.x < b.x && a0.y > b.y) { // hit the left side
 						posFinal.x -= Mathf.Abs(a1.x - b.x);
 						
 						// Handle vel
