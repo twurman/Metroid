@@ -4,6 +4,7 @@ TextureImporter:
   fileIDToRecycleName:
     21300000: Samus_Standing
     21300002: Bullet
+    21300004: energy_small
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -62,6 +63,16 @@ TextureImporter:
         y: 326
         width: 4
         height: 5
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: energy_small
+      rect:
+        serializedVersion: 2
+        x: 115
+        y: 325
+        width: 8
+        height: 8
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}

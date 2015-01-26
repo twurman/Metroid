@@ -4,6 +4,14 @@ using System.Collections;
 public class Enemy : MonoBehaviour {
 
 	public float health = 9999f;
+
+	// See http://deanyd.net/sm/index.php?title=Enemy_item_drops
+	
+	public float HealthDropChance_1 = .25f;
+	public GameObject HealthDrop1;
+
+	public float HealthDropChance_2 = .25f;
+	public GameObject HealthDrop2;
 	
 	// Use this for initialization
 	void Start () {
@@ -21,6 +29,13 @@ public class Enemy : MonoBehaviour {
 			Debug.Log ("died");
 			Destroy (this.gameObject);
 			PhysEngine.objs.Remove(GetComponent<PE_Obj>());
+
+			if(Random.value <= HealthDropChance_1) {
+				GameObject clone = Instantiate(HealthDrop1, transform.position, transform.rotation) as GameObject;
+			}
+			if(Random.value <= HealthDropChance_2) {
+				GameObject clone = Instantiate(HealthDrop2, transform.position, transform.rotation) as GameObject;
+			}
 		}
 	}
 
