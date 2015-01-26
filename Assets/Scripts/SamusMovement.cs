@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class SamusMovement : MonoBehaviour
@@ -8,12 +9,18 @@ public class SamusMovement : MonoBehaviour
 		public float BulletOffset_y_vertical = 0f;
 
 		public float BulletDamage = 0f;
+
+		public Text  HealthCounter;
 		
 		public float fireRate = 0.5F;
 		private float nextFire = 0.0F; 
 		public GameObject projectile;
 
 		public float health = 0f;
+
+		void Start() {
+			HealthCounter.text = "EN.." + health;
+		}
 
 		void Update() {
 			if (Input.GetButton("Fire") && Time.time > nextFire) {
@@ -49,6 +56,7 @@ public class SamusMovement : MonoBehaviour
 				//Destroy(this.gameObject);
 				Debug.Log ("player died");
 			}
+			HealthCounter.text = "EN.." + health;
 		}
 
 		void FixedUpdate() {
