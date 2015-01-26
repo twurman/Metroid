@@ -5,6 +5,8 @@ using System.Collections;
 
 public class PE_Obj : MonoBehaviour {
 	public bool			still = false;
+    public bool         has_mass = true;
+
 	public PE_Collider	coll = PE_Collider.aabb;
 	public PE_GravType	grav = PE_GravType.constant;
 	
@@ -31,14 +33,20 @@ public class PE_Obj : MonoBehaviour {
 	void Update () {
 
 	}
-	
+
+    bool ignoreCollision(Collider other) {
+        //return other.GetComponent<GameObject>().name
+        //Debug.Log(this.gameObject.name + "," + other.gameObject.name);
+        //if (gameObject.layer == LayerMask.NameToLayer("Player Bullet") && other.gameObject.layer == LayerMask.NameToLayer("Player Bullet"))
+        return false;
+    }
 	
 	void OnTriggerEnter(Collider other) {
 		// Ignore collisions of still objects
 		if (still) return;
 		
 		PE_Obj otherPEO = other.GetComponent<PE_Obj>();
-		if (otherPEO == null) return;
+		if (otherPEO == null || ignoreCollision(other)) return;
 		
 		ResolveCollisionWith(otherPEO);
 	}
@@ -52,7 +60,7 @@ public class PE_Obj : MonoBehaviour {
 		if (still) return;
 		
 		PE_Obj otherPEO = other.GetComponent<PE_Obj>();
-		if (otherPEO == null) return;
+		if (otherPEO == null || ignoreCollision(other)) return;
 		
 		// This sets ground to null if we fall off of the current ground
 		// Jumping will also set ground to null

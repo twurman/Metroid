@@ -26,9 +26,10 @@ public class Skree : PE_Obj {
 	}
 
 
-
 	void OnTriggerEnter(Collider other) {
-		Debug.Log ("Skree::OnCollisionEnter: " + other.gameObject.name);
-		collided = true;
+		// Ignore bullet collisions, as they are handled by Enemy
+        if (other.gameObject.name != "Bullet(Clone)") {
+            collided = true;
+        }
 	}
 }
