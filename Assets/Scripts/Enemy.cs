@@ -15,16 +15,18 @@ public class Enemy : MonoBehaviour {
 	
 	}
 
-	void OnTriggerEnter(Collider other) {
-		if (other.gameObject.layer == LayerMask.NameToLayer ("Player Bullet")) {
-			health -= other.GetComponent<Bullet>().damage;
-			Debug.Log(health);
-		}
-
+	void CauseDamage(float amount) {
+		health -= amount;
 		if (health <= 0) {
 			Debug.Log ("died");
 			Destroy (this.gameObject);
 			PhysEngine.objs.Remove(GetComponent<PE_Obj>());
+		}
+	}
+
+	void OnTriggerEnter(Collider other) {
+		if (other.gameObject.layer == LayerMask.NameToLayer ("Player Bullet")) {
+			CauseDamage(other.GetComponent<Bullet>().damage);
 		}
 	}
 

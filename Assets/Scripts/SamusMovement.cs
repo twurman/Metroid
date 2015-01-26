@@ -13,6 +13,8 @@ public class SamusMovement : MonoBehaviour
 		private float nextFire = 0.0F; 
 		public GameObject projectile;
 
+		public float health = 0f;
+
 		void Update() {
 			if (Input.GetButton("Fire") && Time.time > nextFire) {
 				nextFire = Time.time + fireRate;
@@ -38,6 +40,14 @@ public class SamusMovement : MonoBehaviour
 
 				clone.layer = LayerMask.NameToLayer("Player Bullet");
 				clone.GetComponent<Bullet>().damage = BulletDamage;
+			}
+		}
+
+		public void CauseDamage(float amount) {
+			health -= amount;
+			if (health <= 0) {
+				//Destroy(this.gameObject);
+				Debug.Log ("player died");
 			}
 		}
 

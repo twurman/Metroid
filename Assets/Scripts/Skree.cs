@@ -7,6 +7,8 @@ public class Skree : PE_Obj {
 
 	public float AttackDistance = 5;
 
+	public float fallDamage = 0f;
+
 	private bool collided = false;
 
 	// Update is called once per frame
@@ -28,6 +30,9 @@ public class Skree : PE_Obj {
 
 	void OnTriggerEnter(Collider other) {
 		// Ignore bullet collisions, as they are handled by Enemy
+		if (other.gameObject.layer == LayerMask.NameToLayer ("Player")) {
+			other.GetComponent<SamusMovement>().CauseDamage(fallDamage);
+		}
 		if (other.gameObject.layer != LayerMask.NameToLayer ("Player Bullet")) {
             collided = true;
         }
