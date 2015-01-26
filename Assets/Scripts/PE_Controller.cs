@@ -42,42 +42,23 @@ public class PE_Controller : MonoBehaviour {
 		//		if (!grounded) accMult.x = airSteeringAmt;
 		//
 		//		vel.x += vX * accMult.x * acceleration * Time.deltaTime;
-		
-		// Jumping with A (which is x or .)
-//		Debug.Log (vel.y);
-//		if(grounded){
-//			jumpStart = peo.pos0.y;
-//			falling = false;
-//			if(Input.GetKeyDown(KeyCode.X)){
-//				peo.ground = null;
-//				vel.y = jumpVel;
-//				peo.acc.y = 9.8f;
-//			}
-//		} else if(peo.pos0.y > jumpStart && peo.pos0.y < jumpStart + maxJumpHeight){
-//			if(!(Input.GetButton("Vertical"))){
-//				falling = true;
-//				peo.acc.y = 0;
-//			}
-//		} else if(peo.pos0.y >= jumpStart + maxJumpHeight){
-//			//over max height
-//			falling = true;
-//			peo.acc.y = 0;
-//		}
 
+		// handle jump
 		if(grounded){
 			jumpStart = peo.pos0.y;
 			falling = false;
-			if(Input.GetKeyDown(KeyCode.X)){
+			if(Input.GetKeyDown(KeyCode.X) || Input.GetKeyDown(KeyCode.Period)){
 				peo.ground = null;
 				vel.y = jumpVel;
 				peo.acc.y = 9.8f;
 			}
-		} else if(!falling && !(Input.GetButton("Vertical"))){
+		} else if(!falling && !(Input.GetButton("Jump"))){
 			falling = true;
+			vel.y = 0;
 			peo.acc.y = 0;
-		} if(peo.pos0.y >= jumpStart + maxJumpHeight){
+		} if(!falling && peo.pos0.y >= jumpStart + maxJumpHeight){
 			falling = true;
-			peo.acc.y = 0;
+			peo.acc.y = -9.8f;
 		}
 		
 		peo.vel = vel;
