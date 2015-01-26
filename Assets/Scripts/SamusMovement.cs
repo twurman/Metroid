@@ -54,6 +54,13 @@ public class SamusMovement : MonoBehaviour
 			}
 		}
 
+		void OnTriggerEnter(Collider other) {
+			if (other.gameObject.layer == LayerMask.NameToLayer ("Enemy Bullet")) {
+				CauseDamage(other.GetComponent<Bullet>().damage);
+				// TODO : destory bullet
+			}
+		}
+
 		public void CauseDamage(float amount) {
 			health -= amount;
 			if (health <= 0) {

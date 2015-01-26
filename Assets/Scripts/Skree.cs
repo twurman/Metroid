@@ -7,6 +7,10 @@ public class Skree : PE_Obj {
 
 	public float AttackDistance = 5;
 
+	public float BulletDamage = 0f;
+
+	public GameObject projectile;
+
 	public float fallDamage = 0f;
 
 	private bool collided = false;
@@ -33,10 +37,28 @@ public class Skree : PE_Obj {
 		}
 	}
 
+	private void CreateBullet(Vector3 bulletVel) {
+		bulletVel.Normalize();
+		Vector3 bullet_pos = new Vector3(
+			transform.position.x,
+			transform.position.y,
+			transform.position.z);
+		GameObject clone = Instantiate(projectile, bullet_pos, transform.rotation) as GameObject;
+		PE_Obj pe = clone.GetComponent<PE_Obj>();
+		pe.vel = bulletVel;
+		clone.layer = LayerMask.NameToLayer("Enemy Bullet");
+		clone.GetComponent<Bullet>().damage = BulletDamage;
+	}
+	
 	void LateUpdate() {
 		if (collided) {
 			Destroy (this.gameObject);
 			PhysEngine.objs.Remove(this);
+
+			CreateBullet(new Vector3(.75f, 1.5f, 0f));
+			CreateBullet(new Vector3(-.75f, 1.5f, 0f));
+			CreateBullet(new Vector3(-1f, 0f, 0f));
+			CreateBullet(new Vector3(1f, 0f, 0f));
 		}
 
 	}
