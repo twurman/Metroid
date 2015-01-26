@@ -17,6 +17,8 @@ public enum PE_Dir { // The direction in which the PE_Obj is moving
 	still,
 	up,
 	down,
+	right,
+	left,
 	upRight,
 	downRight,
 	downLeft,
@@ -76,9 +78,9 @@ public class PhysEngine : MonoBehaviour {
 			}
 		} else if (po.vel.x>0 && po.vel.y>0) {
 			po.dir = PE_Dir.upRight;
-		} else if (po.vel.x>0 && po.vel.y<=0) {
+		} else if (po.vel.x>0 && po.vel.y<0) {
 			po.dir = PE_Dir.downRight;
-		} else if (po.vel.x<0 && po.vel.y<=0) {
+		} else if (po.vel.x<0 && po.vel.y<0) {
 			po.dir = PE_Dir.downLeft;
 		} else if (po.vel.x<0 && po.vel.y>0) {
 			po.dir = PE_Dir.upLeft;

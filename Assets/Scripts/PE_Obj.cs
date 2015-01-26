@@ -113,13 +113,12 @@ public class PE_Obj : MonoBehaviour {
 					a1 = pos1;
 					a1.y -= transform.lossyScale.y * transform.collider.bounds.size.y /2f;
 					b = that.pos1;
-					b.y += that.transform.lossyScale.y * that.transform.collider.bounds.size.y /2f;
+					b.y += that.transform.lossyScale.y /2f;
 					if (b.y > a1.y) {
 						posFinal.y += Mathf.Abs( a1.y - b.y );
 					}
 					// Handle vel
 					vel.y = 0;
-					
 					if (ground == null) ground = that;
 					break; // Exit this switch statement: switch (that.coll)
 				}
@@ -129,54 +128,57 @@ public class PE_Obj : MonoBehaviour {
 					a1 = pos1;
 					a1.y += transform.lossyScale.y * transform.collider.bounds.size.y /2f;
 					b = that.pos1;
-					b.y -= that.transform.lossyScale.y * that.transform.collider.bounds.size.y /2f;
+					b.y -= that.transform.lossyScale.y /2f;
 					if (b.y < a1.y) {
 						posFinal.y -= Mathf.Abs( a1.y - b.y );
 					}
 					// Handle vel
 					vel.y = 0;
-					
 					break; // Exit this switch statement: switch (that.coll)
 				}
 				
 				if (dir == PE_Dir.upRight) { // Bottom, Left is the comparison corner
 					a1 = pos1;
-					a1.x += transform.lossyScale.x /2f;
+					a1.x += transform.lossyScale.x * transform.collider.bounds.size.x /2f;
 					a1.y += transform.lossyScale.y * transform.collider.bounds.size.y /2f;
 					a0 = a1 - delta;
 					b = that.pos1;
 					b.x -= that.transform.lossyScale.x /2f;
-					b.y -= that.transform.localScale.y * that.transform.collider.bounds.size.y /2f;
+					b.y -= that.transform.localScale.y /2f;
+//					print ("collision up right");
 				}
 				
 				if (dir == PE_Dir.upLeft) { // Bottom, Right is the comparison corner
 					a1 = pos1;
-					a1.x -= transform.lossyScale.x  /2f;
+					a1.x -= transform.lossyScale.x * transform.collider.bounds.size.x /2f;
 					a1.y += transform.lossyScale.y * transform.collider.bounds.size.y /2f;
 					a0 = a1 - delta;
 					b = that.pos1;
-					b.x += that.transform.lossyScale.x  /2f;
-					b.y -= that.transform.localScale.y * that.transform.collider.bounds.size.y /2f;
+					b.x += that.transform.lossyScale.x /2f;
+					b.y -= that.transform.localScale.y /2f;
+//					print ("collision up left");
 				}
 				
 				if (dir == PE_Dir.downLeft) { // Top, Right is the comparison corner
 					a1 = pos1;
-					a1.x -= transform.lossyScale.x  /2f;
+					a1.x -= transform.lossyScale.x * transform.collider.bounds.size.x  /2f;
 					a1.y -= transform.lossyScale.y * transform.collider.bounds.size.y /2f;
 					a0 = a1 - delta;
 					b = that.pos1;
-					b.x += that.transform.lossyScale.x  /2f;
-					b.y += that.transform.localScale.y * that.transform.collider.bounds.size.y /2f;
+					b.x += that.transform.lossyScale.x /2f;
+					b.y += that.transform.localScale.y /2f;
+//					print ("collision down left");
 				}
 				
 				if (dir == PE_Dir.downRight) { // Top, Left is the comparison corner
 					a1 = pos1;
-					a1.x += transform.lossyScale.x  /2f;
+					a1.x += transform.lossyScale.x * transform.collider.bounds.size.x /2f;
 					a1.y -= transform.lossyScale.y * transform.collider.bounds.size.y /2f;
 					a0 = a1 - delta;
 					b = that.pos1;
-					b.x -= that.transform.lossyScale.x  /2f;
-					b.y += that.transform.localScale.y * that.transform.collider.bounds.size.y /2f;
+					b.x -= that.transform.lossyScale.x /2f;
+					b.y += that.transform.localScale.y /2f;
+//					print ("collision down right");
 				}
 				
 				// In the x dimension, find how far along the line segment between a0 and a1 we need to go to encounter b
@@ -188,7 +190,7 @@ public class PE_Obj : MonoBehaviour {
 				// Use pU.y vs. b.y to tell which side of PE_Obj "that" PE_Obj "this" should be on
 				switch (dir) {
 				case PE_Dir.upRight:
-					if (pU.y > b.y) { // hit the left side
+					if (a1.x > b.x && a1.y > b.y) { // hit the left side
 						posFinal.x -= Mathf.Abs(a1.x - b.x);
 						
 						// Handle vel
@@ -204,6 +206,7 @@ public class PE_Obj : MonoBehaviour {
 					break;
 					
 				case PE_Dir.downRight:
+//					print("pU.y = " + pU.y + "  b.y = " + b.y);
 					if (pU.y < b.y) { // hit the left side
 						posFinal.x -= Mathf.Abs(a1.x - b.x);
 						
