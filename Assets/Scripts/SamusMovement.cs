@@ -13,10 +13,15 @@ public class SamusMovement : MonoBehaviour
 		private float nextFire = 0.0F;
 		public GameObject projectile;
 		public float health = 0f;
+		public bool crouching = false;
 
 		private void UpdateHealthCounter ()
 		{
-				HealthCounter.text = "EN.." + health;
+				HealthCounter.text = "EN..";
+				if(health < 10){
+					HealthCounter.text += "0";
+				}
+				HealthCounter.text += health;
 		}
 		
 		void Start ()
@@ -81,13 +86,20 @@ public class SamusMovement : MonoBehaviour
 						hScale = 1;
 				} else if (hSpeed < 0) {
 						hScale = -1;
-//				transform.localScale = new Vector3 (-1, 1, 1);
 				}
 
-				if (Input.GetAxis ("Vertical") < 0) {
+				if (Input.GetAxis ("Vertical") < 0 && GetComponent<PE_Controller>().grounded) {
 						vScale = .5f;
-				} else if (Input.GetAxis ("Vertical") > 0 || Input.GetKeyDown(KeyCode.X)) {
+						Vector3 pos = GetComponent<PE_Obj>().pos0;
+						pos.y += vScale * transform.collider.bounds.size.y;
+						GetComponent<PE_Obj>().pos0 = pos;
+						crouching = true;
+				} else if (Input.GetAxis ("Vertical") > 0) {
 						vScale = 1;
+						Vector3 pos = GetComponent<PE_Obj>().pos0;
+						pos.y += vScale * transform.collider.bounds.size.y;
+						GetComponent<PE_Obj>().pos0 = pos;
+						crouching = false;
 				}
 			
 				transform.localScale = new Vector3 (hScale, vScale, 1);

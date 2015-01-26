@@ -5,6 +5,10 @@ TextureImporter:
     21300000: Samus_Standing
     21300002: Bullet
     21300004: energy_small
+    21300006: Samus_Ball_1
+    21300008: Samus_Ball_2
+    21300010: Samus_Ball_3
+    21300012: Samus_Ball_4
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -73,6 +77,46 @@ TextureImporter:
         y: 325
         width: 8
         height: 8
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Samus_Ball_1
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 969
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Samus_Ball_2
+      rect:
+        serializedVersion: 2
+        x: 285
+        y: 969
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Samus_Ball_3
+      rect:
+        serializedVersion: 2
+        x: 298
+        y: 969
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Samus_Ball_4
+      rect:
+        serializedVersion: 2
+        x: 312
+        y: 969
+        width: 13
+        height: 13
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}

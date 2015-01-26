@@ -20,6 +20,7 @@ public class PE_Controller : MonoBehaviour {
 	public float	groundMomentumX = 0.1f;
 	
 	public Vector2	maxSpeed = new Vector2( 10, 15 ); // Different x & y to limit maximum falling velocity
+	private bool 	adjustPos = false;
 	
 	// Use this for initialization
 	void Start () {
@@ -48,9 +49,16 @@ public class PE_Controller : MonoBehaviour {
 			jumpStart = peo.pos0.y;
 			falling = false;
 			if(Input.GetKeyDown(KeyCode.X) || Input.GetKeyDown(KeyCode.Period)){
-				peo.ground = null;
-				vel.y = jumpVel;
-				peo.acc.y = 9.8f;
+				if(!GetComponent<SamusMovement>().crouching){
+					peo.ground = null;
+					vel.y = jumpVel;
+					peo.acc.y = 9.8f;
+				} else {
+					float hScale = transform.localScale.x;
+					transform.localScale = new Vector3 (hScale, 1, 1);
+					GetComponent<SamusMovement>().crouching = false;
+					adjustPos = true;
+				}
 			}
 		} else if(!falling && !(Input.GetButton("Jump"))){
 			falling = true;
@@ -62,5 +70,14 @@ public class PE_Controller : MonoBehaviour {
 		}
 		
 		peo.vel = vel;
+	}
+
+	void FixedUpdate(){
+		if(adjustPos){
+			Vector3 pos = GetComponent<PE_Obj>().pos0;
+			pos.y += transform.collider.bounds.size.y;
+			GetComponent<PE_Obj>().pos0 = pos;
+			adjustPos = false;
+		}
 	}
 }

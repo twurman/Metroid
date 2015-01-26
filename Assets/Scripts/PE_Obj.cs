@@ -151,7 +151,7 @@ public class PE_Obj : MonoBehaviour {
 				if (dir == PE_Dir.down) {
 					// If a0 was above b and a1 is below b resolve to be on top
 					a1 = pos1;
-					a1.y -= transform.lossyScale.y * transform.collider.bounds.size.y/2f;
+					a1.y -= transform.collider.bounds.size.y/2f;
 					a0 = a1 - delta;
 					b = that.pos1;
 					b.y += that.transform.lossyScale.y/2f;
@@ -168,7 +168,7 @@ public class PE_Obj : MonoBehaviour {
 				if (dir == PE_Dir.up) {
 					// If a0 was below b and a1 is above b resolve to be below
 					a1 = pos1;
-					a1.y += transform.lossyScale.y * transform.collider.bounds.size.y/2f;
+					a1.y += transform.collider.bounds.size.y/2f;
 					a0 = a1 - delta;
 					b = that.pos1;
 					b.y -= that.transform.lossyScale.y/2f;
@@ -183,8 +183,8 @@ public class PE_Obj : MonoBehaviour {
 
 				if (dir == PE_Dir.upRight) { // Bottom, Left is the comparison corner
 					a1 = pos1;
-					a1.x += transform.lossyScale.x * transform.collider.bounds.size.x/2f;
-					a1.y += transform.lossyScale.y * transform.collider.bounds.size.y/2f;
+					a1.x += transform.collider.bounds.size.x/2f;
+					a1.y += transform.collider.bounds.size.y/2f;
 					a0 = a1 - delta;
 					b = that.pos1;
 					b.x -= that.transform.lossyScale.x/2f;
@@ -193,8 +193,8 @@ public class PE_Obj : MonoBehaviour {
 
 				if (dir == PE_Dir.upLeft) { // Bottom, Right is the comparison corner
 					a1 = pos1;
-					a1.x -= transform.lossyScale.x * transform.collider.bounds.size.x/2f;
-					a1.y += transform.lossyScale.y * transform.collider.bounds.size.y/2f;
+					a1.x -= transform.collider.bounds.size.x/2f;
+					a1.y += transform.collider.bounds.size.y/2f;
 					a0 = a1 - delta;
 					b = that.pos1;
 					b.x += that.transform.lossyScale.x/2f;
@@ -203,8 +203,8 @@ public class PE_Obj : MonoBehaviour {
 
 				if (dir == PE_Dir.downLeft) { // Top, Right is the comparison corner
  					a1 = pos1;
-					a1.x -= transform.lossyScale.x * transform.collider.bounds.size.x/2f;
-					a1.y -= transform.lossyScale.y * transform.collider.bounds.size.y/2f;
+					a1.x -= transform.collider.bounds.size.x/2f;
+					a1.y -= transform.collider.bounds.size.y/2f;
 					a0 = a1 - delta;
 					b = that.pos1;
 					b.x += that.transform.lossyScale.x/2f;
@@ -213,8 +213,8 @@ public class PE_Obj : MonoBehaviour {
 
 				if (dir == PE_Dir.downRight) { // Top, Left is the comparison corner
 					a1 = pos1;
-					a1.x += transform.lossyScale.x * transform.collider.bounds.size.x/2f;
-					a1.y -= transform.lossyScale.y * transform.collider.bounds.size.y/2f;
+					a1.x += transform.collider.bounds.size.x/2f;
+					a1.y -= transform.collider.bounds.size.y/2f;
 					a0 = a1 - delta;
 					b = that.pos1;
 					b.x -= that.transform.lossyScale.x/2f;
