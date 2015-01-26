@@ -18,8 +18,12 @@ public class SamusMovement : MonoBehaviour
 
 		public float health = 0f;
 
-		void Start() {
+		private void UpdateHealthCounter() {
 			HealthCounter.text = "EN.." + health;
+		}
+		
+		void Start() {
+			UpdateHealthCounter();
 		}
 
 		void Update() {
@@ -56,7 +60,7 @@ public class SamusMovement : MonoBehaviour
 				//Destroy(this.gameObject);
 				Debug.Log ("player died");
 			}
-			HealthCounter.text = "EN.." + health;
+			UpdateHealthCounter();
 		}
 
 		void FixedUpdate() {

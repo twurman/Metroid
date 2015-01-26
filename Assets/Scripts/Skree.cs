@@ -11,11 +11,25 @@ public class Skree : PE_Obj {
 
 	private bool collided = false;
 
+	private bool falling = false;
+
+	public float Acceleration = 1f;
+
 	// Update is called once per frame
 	void Update () {
-
 		if (Mathf.Abs(player.transform.position.x - this.gameObject.transform.position.x) < AttackDistance) {
 			this.grav = PE_GravType.constant;
+			falling = true;
+		}
+	}
+
+	void FixedUpdate() {
+		if (falling) {
+			if (player.transform.position.x - this.gameObject.transform.position.x > 0) {
+				acc.x =  1 * Acceleration;
+			} else if (player.transform.position.x - this.gameObject.transform.position.x < 0) {
+				acc.x = -1 * Acceleration;
+			}
 		}
 	}
 
