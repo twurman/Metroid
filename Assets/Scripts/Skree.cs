@@ -28,7 +28,7 @@ public class Skree : PE_Obj {
 
 	void OnTriggerEnter(Collider other) {
 		// Ignore bullet collisions, as they are handled by Enemy
-        if (other.gameObject.name != "Bullet(Clone)") {
+		if (other.gameObject.layer != LayerMask.NameToLayer ("Player Bullet")) {
             collided = true;
         }
 	}

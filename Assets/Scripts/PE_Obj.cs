@@ -35,10 +35,9 @@ public class PE_Obj : MonoBehaviour {
 	}
 
     bool ignoreCollision(Collider other) {
-        //return other.GetComponent<GameObject>().name
-        //Debug.Log(this.gameObject.name + "," + other.gameObject.name);
-        //if (gameObject.layer == LayerMask.NameToLayer("Player Bullet") && other.gameObject.layer == LayerMask.NameToLayer("Player Bullet"))
-        return false;
+		bool ignore = (other.GetComponent<Enemy> () != null && gameObject.layer == LayerMask.NameToLayer ("Player Bullet")) ||
+						(this.GetComponent<Enemy> () != null && other.gameObject.layer == LayerMask.NameToLayer ("Player Bullet"));
+        return ignore;
     }
 	
 	void OnTriggerEnter(Collider other) {

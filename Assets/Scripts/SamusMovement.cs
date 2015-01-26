@@ -6,6 +6,8 @@ public class SamusMovement : MonoBehaviour
 		public float BulletOffset_x = 0f;
 		public float BulletOffset_y = 0f;
 		public float BulletOffset_y_vertical = 0f;
+
+		public float BulletDamage = 0f;
 		
 		public float fireRate = 0.5F;
 		private float nextFire = 0.0F; 
@@ -15,13 +17,13 @@ public class SamusMovement : MonoBehaviour
 			if (Input.GetButton("Fire") && Time.time > nextFire) {
 				nextFire = Time.time + fireRate;
 
+				GameObject clone;
 				if (Input.GetButton("Vertical")) {
                     Vector3 bullet_pos = new Vector3(
 											transform.position.x,
 			                                transform.position.y + BulletOffset_y_vertical,
 											transform.position.z);
-					GameObject clone = Instantiate(projectile, bullet_pos, transform.rotation) as GameObject;
-                    clone.layer = LayerMask.NameToLayer("Player Bullet");
+					clone = Instantiate(projectile, bullet_pos, transform.rotation) as GameObject;
                     PE_Obj pe = clone.GetComponent<PE_Obj>();
                     pe.vel = new Vector3(0, 1, 0);
 				} else {
@@ -29,12 +31,13 @@ public class SamusMovement : MonoBehaviour
 											transform.position.x + (BulletOffset_x * transform.localScale.x),
 			                                transform.position.y + BulletOffset_y,
 											transform.position.z);
-					GameObject clone = Instantiate(projectile, bullet_pos, transform.rotation) as GameObject;
-                    clone.layer = LayerMask.NameToLayer("Player Bullet");
+					clone = Instantiate(projectile, bullet_pos, transform.rotation) as GameObject;
                     PE_Obj pe = clone.GetComponent<PE_Obj>();
                     pe.vel = new Vector3(transform.localScale.x, 0, 0);
 				}
-				
+
+				clone.layer = LayerMask.NameToLayer("Player Bullet");
+				clone.GetComponent<Bullet>().damage = BulletDamage;
 			}
 		}
 

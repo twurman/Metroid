@@ -5,6 +5,8 @@ public class Bullet : MonoBehaviour {
 
     private PE_Obj peo;
 
+	public float damage = 0f;
+
 	public float velocity = 1.0f;
 	public float maxDistance = 3.0f;
 
