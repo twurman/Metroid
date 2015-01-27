@@ -4,6 +4,7 @@ TextureImporter:
   fileIDToRecycleName:
     21300000: Skree
     21300002: Floater
+    21300004: Zoomer
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -62,6 +63,16 @@ TextureImporter:
         y: 283
         width: 16
         height: 8
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Zoomer
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 316
+        width: 16
+        height: 14
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}

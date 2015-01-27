@@ -34,6 +34,8 @@ public class Zoomer : MonoBehaviour {
 		//Debug.Log(peo.velRel.x==0);
 		//Debug.Log (peo.velRel.y==0);
 
+		bool direction_changed = false;
+
 		if (peo.velRel.x<0.01 && peo.velRel.y<0.01) {
 			frames_stopped += 1;
 			Debug.Log("stoped");
@@ -57,11 +59,7 @@ public class Zoomer : MonoBehaviour {
 				} else {
 					GroundDirection = Directions.right;
 				}
-
-				established = false;
-				peo.acc = Vector3.zero;
-				peo.vel = Vector3.zero;
-				frames_stopped = 0;
+				direction_changed = true;
 			}
 			break;
 
@@ -80,10 +78,7 @@ public class Zoomer : MonoBehaviour {
 					GroundDirection = Directions.up;
 				}
 
-				established = false;
-				peo.acc = Vector3.zero;
-				peo.vel = Vector3.zero;
-				frames_stopped = 0;
+				direction_changed = true;
 			}
 			break;
 
@@ -101,11 +96,7 @@ public class Zoomer : MonoBehaviour {
 				} else {
 					GroundDirection = Directions.left;
 				}
-
-				established = false;
-				peo.acc = Vector3.zero;
-				peo.vel = Vector3.zero;
-				frames_stopped = 0;
+				direction_changed = true;
 			}
 			
 			break;
@@ -124,16 +115,30 @@ public class Zoomer : MonoBehaviour {
 				} else {
 					GroundDirection = Directions.down;
 				}
-
-				established = false;
-				peo.vel = Vector3.zero;
-				frames_stopped = 0;
-				peo.acc = Vector3.zero;
 			}
-
-
 			break;
+		}
 
+		if (direction_changed) {
+			established = false;
+			peo.vel = Vector3.zero;
+			frames_stopped = 0;
+			peo.acc = Vector3.zero;
+
+//			switch (GroundDirection) {
+//			case Directions.down:
+//				transform.Rotate(new Vector3(0f, 0f, 0f));
+//				break;
+//			case Directions.right:
+//				transform.Rotate(new Vector3(0f, 90f, 0f));
+//				break;
+//			case Directions.up:
+//				transform.Rotate(new Vector3(0f, 180f, 0f));
+//				break;
+//			case Directions.left:
+//				transform.Rotate(new Vector3(0f, 270f, 0f));
+//				break;
+//			}
 
 		}
 	}
