@@ -9,6 +9,7 @@ TextureImporter:
     21300008: Samus_Ball_2
     21300010: Samus_Ball_3
     21300012: Samus_Ball_4
+    21300014: Samus_Upwards
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -117,6 +118,16 @@ TextureImporter:
         y: 969
         width: 13
         height: 13
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Samus_Upwards
+      rect:
+        serializedVersion: 2
+        x: 103
+        y: 969
+        width: 14
+        height: 38
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}

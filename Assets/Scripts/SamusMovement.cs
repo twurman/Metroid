@@ -14,12 +14,25 @@ public class SamusMovement : MonoBehaviour
 		public GameObject projectile;
 		public float health = 0f;
 		public bool crouching = false;
+		public Sprite standing, upwards, crouch1, crouch2, crouch3, crouch4;
+		private int crouchTimer = 0;
+
+		public enum Samus_Dir { // The direction in which the PE_Obj is moving
+			standing,
+			up,
+			c1,
+			c2,
+			c3,
+			c4
+		}
 
 		private void UpdateHealthCounter ()
 		{
 				HealthCounter.text = "EN..";
 				if(health < 10){
 					HealthCounter.text += "0";
+				} else if(health > 99){
+					health = 99;
 				}
 				HealthCounter.text += health;
 		}
@@ -58,6 +71,29 @@ public class SamusMovement : MonoBehaviour
 				}
 		}
 
+		void ChangeSprite(Samus_Dir dir){
+				switch(dir){
+				case(Samus_Dir.standing):
+					GetComponent<SpriteRenderer>().sprite = standing;
+					break;
+				case(Samus_Dir.up):
+					GetComponent<SpriteRenderer>().sprite = upwards;
+					break;
+				case(Samus_Dir.c1):
+					GetComponent<SpriteRenderer>().sprite = crouch1;
+					break;
+				case(Samus_Dir.c2):
+					GetComponent<SpriteRenderer>().sprite = crouch2;
+					break;
+				case(Samus_Dir.c3):
+					GetComponent<SpriteRenderer>().sprite = crouch3;
+					break;
+				case(Samus_Dir.c4):
+					GetComponent<SpriteRenderer>().sprite = crouch4;
+					break;
+				}
+		}
+
 		void OnTriggerEnter (Collider other)
 		{
 				if (other.gameObject.layer == LayerMask.NameToLayer ("Enemy Bullet")) {
@@ -81,6 +117,24 @@ public class SamusMovement : MonoBehaviour
 
 		void FixedUpdate ()
 		{
+				crouchTimer++;
+				if(crouching){
+					if(crouchTimer % 4 == 0){
+						ChangeSprite(Samus_Dir.c1);
+					} else if(crouchTimer % 4 == 1){
+						ChangeSprite(Samus_Dir.c2);
+					} else if(crouchTimer % 4 == 2){
+						ChangeSprite(Samus_Dir.c3);
+					} else if(crouchTimer % 4 == 3){
+						ChangeSprite(Samus_Dir.c4);
+					}
+				} else if(Input.GetButton("Vertical")){
+					ChangeSprite(Samus_Dir.up);
+				} else {
+					ChangeSprite(Samus_Dir.standing);
+				}
+
+
 				float hSpeed = Input.GetAxis ("Horizontal");
 				float hScale = transform.localScale.x;
 				float vScale = transform.localScale.y;
