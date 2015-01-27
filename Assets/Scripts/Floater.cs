@@ -20,8 +20,9 @@ public class Floater : PE_Obj {
 		if (other.gameObject.layer == LayerMask.NameToLayer ("Player")) {
 			other.GetComponent<SamusMovement>().CauseDamage(hitDamage);
 		}
-		if (other.gameObject.layer != LayerMask.NameToLayer ("Player Bullet")) {
-			collided = true;
+		if (other.gameObject.layer == LayerMask.NameToLayer ("Player Bullet")) {
+			PhysEngine.objs.Remove(other.GetComponent<PE_Obj>());
+			Destroy(other.gameObject);
 		}
 		if(other.gameObject.layer == LayerMask.NameToLayer("Ground")){
 			float xVel = vel.x;
