@@ -65,7 +65,7 @@ public class Zoomer : MonoBehaviour {
 				frames_stopped = 0;
 			} else {
 				frames_stopped += 1;
-				Debug.Log("STUCK! " + transform.position + " " + stuck_position);
+				//Debug.Log("STUCK! " + transform.position + " " + stuck_position);
 			}
 		}
 
