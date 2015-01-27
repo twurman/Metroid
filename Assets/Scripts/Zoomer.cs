@@ -25,7 +25,7 @@ public class Zoomer : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 		Debug.Log(peo.vel + "," + peo.acc + "," + GroundDirection);
 
 		switch (GroundDirection) {
@@ -86,12 +86,14 @@ public class Zoomer : MonoBehaviour {
 				established = true;
 			}
 
-			if (established && peo.vel.x > DirectionChangeVelocity) {
+			if ((established && peo.vel.x > DirectionChangeVelocity) || peo.vel0.y==0) {
 				GroundDirection = Directions.up;
 				established = false;
 				peo.vel = Vector3.zero;
 				peo.acc = Vector3.zero;
 			}
+
+
 			break;
 
 
