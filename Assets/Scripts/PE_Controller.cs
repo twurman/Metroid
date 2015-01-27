@@ -36,13 +36,6 @@ public class PE_Controller : MonoBehaviour {
 		// Horizontal movement
 		float vX = Input.GetAxis("Horizontal"); // Returns a number [-1..1]
 		vel.x = vX * hSpeed;
-		
-		//		if (vX == 0) { // No Horizontal input from keyboard
-		//		}
-		//		Vector3 accMult = Vector3.one;
-		//		if (!grounded) accMult.x = airSteeringAmt;
-		//
-		//		vel.x += vX * accMult.x * acceleration * Time.deltaTime;
 
 		// handle jump
 		if(grounded){
@@ -66,6 +59,7 @@ public class PE_Controller : MonoBehaviour {
 			peo.acc.y = 0;
 		} if(!falling && peo.pos0.y >= jumpStart + maxJumpHeight){
 			falling = true;
+		} if(falling){
 			peo.acc.y = -9.8f;
 		}
 		

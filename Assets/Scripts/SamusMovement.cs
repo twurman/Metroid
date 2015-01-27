@@ -64,6 +64,9 @@ public class SamusMovement : MonoBehaviour
 						CauseDamage (other.GetComponent<Bullet> ().damage);
 						// TODO : destory bullet
 				}
+				if(other.gameObject.layer == LayerMask.NameToLayer("Ground")){
+					GetComponent<PE_Controller>().falling = true;
+				}
 		}
 
 		public void CauseDamage (float amount)
