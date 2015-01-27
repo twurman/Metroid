@@ -9,7 +9,7 @@ public class Zoomer : MonoBehaviour {
 
 	private PE_Obj peo;
 
-	private int frames_stopped = 0;
+	public int frames_stopped = 0;
 
 	public int StuckFramesForSwitch = 5;
 
@@ -30,10 +30,13 @@ public class Zoomer : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-		//Debug.Log(peo.vel + "," + peo.acc + "," + GroundDirection);
+		//Debug.Log(peo.vel + "," + peo.acc + "," + GroundDirection + "," + peo.velRel);
+		//Debug.Log(peo.velRel.x==0);
+		//Debug.Log (peo.velRel.y==0);
 
-		if (peo.velRel.x==0 && peo.velRel.y==0) {
+		if (peo.velRel.x<0.01 && peo.velRel.y<0.01) {
 			frames_stopped += 1;
+			Debug.Log("stoped");
 		} else {
 			frames_stopped = 0;
 		}
