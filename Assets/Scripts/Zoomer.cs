@@ -9,6 +9,10 @@ public class Zoomer : MonoBehaviour {
 
 	private PE_Obj peo;
 
+	private int frames_stopped = 0;
+
+	public int StuckFramesForSwitch = 5;
+
 	private bool established = false;
 
 	public Directions GroundDirection;
@@ -26,7 +30,13 @@ public class Zoomer : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-		Debug.Log(peo.vel + "," + peo.acc + "," + GroundDirection);
+		//Debug.Log(peo.vel + "," + peo.acc + "," + GroundDirection);
+
+		if (peo.velRel.x==0 && peo.velRel.y==0) {
+			frames_stopped += 1;
+		} else {
+			frames_stopped = 0;
+		}
 
 		switch (GroundDirection) {
 		case Directions.up:
@@ -37,11 +47,18 @@ public class Zoomer : MonoBehaviour {
 				established = true;
 			}
 
-			if (established && peo.vel.y > DirectionChangeVelocity) {
-				GroundDirection = Directions.left;
+			if ((established && peo.vel.y > DirectionChangeVelocity) || frames_stopped>StuckFramesForSwitch) {
+
+				if ((established && peo.vel.y > DirectionChangeVelocity)) {
+					GroundDirection = Directions.left;
+				} else {
+					GroundDirection = Directions.right;
+				}
+
 				established = false;
 				peo.acc = Vector3.zero;
 				peo.vel = Vector3.zero;
+				frames_stopped = 0;
 			}
 			break;
 
@@ -53,11 +70,17 @@ public class Zoomer : MonoBehaviour {
 				established = true;
 			}
 
-			if (established && peo.vel.x < -1 * DirectionChangeVelocity) {
-				GroundDirection = Directions.down;
+			if ((established && peo.vel.x < -1 * DirectionChangeVelocity) || frames_stopped>StuckFramesForSwitch) {
+				if (established && peo.vel.x < -1 * DirectionChangeVelocity) {
+					GroundDirection = Directions.down;
+				} else {
+					GroundDirection = Directions.up;
+				}
+
 				established = false;
 				peo.acc = Vector3.zero;
 				peo.vel = Vector3.zero;
+				frames_stopped = 0;
 			}
 			break;
 
@@ -69,11 +92,17 @@ public class Zoomer : MonoBehaviour {
 				established = true;
 			}
 
-			if (established && peo.vel.y < -1 * DirectionChangeVelocity) {
-				GroundDirection = Directions.right;
+			if ((established && peo.vel.y < -1 * DirectionChangeVelocity) || frames_stopped>StuckFramesForSwitch) {
+				if ((established && peo.vel.y < -1 * DirectionChangeVelocity)) {
+					GroundDirection = Directions.right;
+				} else {
+					GroundDirection = Directions.left;
+				}
+
 				established = false;
 				peo.acc = Vector3.zero;
 				peo.vel = Vector3.zero;
+				frames_stopped = 0;
 			}
 			
 			break;
@@ -86,10 +115,16 @@ public class Zoomer : MonoBehaviour {
 				established = true;
 			}
 
-			if ((established && peo.vel.x > DirectionChangeVelocity) || peo.vel0.y==0) {
-				GroundDirection = Directions.up;
+			if ((established && peo.vel.x > DirectionChangeVelocity) || frames_stopped>StuckFramesForSwitch) {
+				if ((established && peo.vel.x > DirectionChangeVelocity)) {
+					GroundDirection = Directions.up;
+				} else {
+					GroundDirection = Directions.down;
+				}
+
 				established = false;
 				peo.vel = Vector3.zero;
+				frames_stopped = 0;
 				peo.acc = Vector3.zero;
 			}
 
