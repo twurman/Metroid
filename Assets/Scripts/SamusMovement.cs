@@ -31,7 +31,7 @@ public class SamusMovement : MonoBehaviour
 
 		void Update ()
 		{
-				if (Input.GetButton ("Fire") && Time.time > nextFire) {
+				if (Input.GetButton ("Fire") && Time.time > nextFire && !crouching) {
 						nextFire = Time.time + fireRate;
 
 						GameObject clone;

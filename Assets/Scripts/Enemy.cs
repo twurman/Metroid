@@ -3,6 +3,9 @@ using System.Collections;
 
 public class Enemy : MonoBehaviour {
 
+	public Sprite normal, hit;
+	private int hitTimer;
+
 	public float health = 9999f;
 
 	// See http://deanyd.net/sm/index.php?title=Enemy_item_drops
@@ -20,7 +23,14 @@ public class Enemy : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+		
+	}
+
+	void FixedUpdate(){
+		if(hitTimer == 10){
+			ChangeSprite(false);
+		}
+		hitTimer++;
 	}
 
 	void CauseDamage(float amount) {
@@ -39,9 +49,19 @@ public class Enemy : MonoBehaviour {
 		}
 	}
 
+	void ChangeSprite(bool gotHit){
+		if(gotHit){
+			GetComponent<SpriteRenderer>().sprite = hit;
+			hitTimer = 0;
+		} else {
+			GetComponent<SpriteRenderer>().sprite = normal;
+		}
+	}
+
 	void OnTriggerEnter(Collider other) {
 		if (other.gameObject.layer == LayerMask.NameToLayer ("Player Bullet")) {
 			CauseDamage(other.GetComponent<Bullet>().damage);
+			ChangeSprite(true);
 		}
 	}
 

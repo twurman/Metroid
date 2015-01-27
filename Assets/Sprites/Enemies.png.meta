@@ -6,6 +6,9 @@ TextureImporter:
     21300002: Floater
     21300004: Zoomer
     21300006: Zoomer_2
+    21300008: Zoomer_Hit
+    21300010: Floater_Hit
+    21300012: Skree_Hit
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -84,6 +87,36 @@ TextureImporter:
         y: 316
         width: 16
         height: 14
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Zoomer_Hit
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 316
+        width: 16
+        height: 14
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Floater_Hit
+      rect:
+        serializedVersion: 2
+        x: 440
+        y: 283
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Skree_Hit
+      rect:
+        serializedVersion: 2
+        x: 91
+        y: 283
+        width: 16
+        height: 24
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}

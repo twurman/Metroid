@@ -7,6 +7,7 @@ public enum Directions {
 
 public class Zoomer : MonoBehaviour {
 
+
 	private PE_Obj peo;
 
 	private Vector3 stuck_position;
@@ -51,7 +52,7 @@ public class Zoomer : MonoBehaviour {
 			break;
 		}
 	}
-	
+
 	// Update is called once per frame
 	void FixedUpdate () {
 		//Debug.Log(peo.vel + "," + peo.acc + "," + GroundDirection + "," + peo.velRel);
