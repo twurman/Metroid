@@ -9,6 +9,8 @@ public class Zoomer : MonoBehaviour {
 
 	private PE_Obj peo;
 
+	private Vector3 stuck_position;
+
 	public int frames_stopped = 0;
 
 	public int StuckFramesForSwitch = 5;
@@ -26,6 +28,28 @@ public class Zoomer : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		peo = this.GetComponent<PE_Obj>();
+		UpdateSpriteRotation();
+	}
+
+	void UpdateSpriteRotation() {
+		switch (GroundDirection) {
+		case Directions.down:
+			//transform.Rotate(new Vector3(0f, 0f, 0f));
+			transform.rotation = Quaternion.AngleAxis(0f, Vector3.back);
+			break;
+		case Directions.right:
+			//transform.Rotate(new Vector3(0f, 0f, 90f));
+			transform.rotation = Quaternion.AngleAxis(270f, Vector3.back);
+			break;
+		case Directions.up:
+			//transform.Rotate(new Vector3(0f, 0f, 180f));
+			transform.rotation = Quaternion.AngleAxis(180f, Vector3.back);
+			break;
+		case Directions.left:
+			//transform.Rotate(new Vector3(0f, 0f, 270f));
+			transform.rotation = Quaternion.AngleAxis(90f, Vector3.back);
+			break;
+		}
 	}
 	
 	// Update is called once per frame
@@ -36,11 +60,17 @@ public class Zoomer : MonoBehaviour {
 
 		bool direction_changed = false;
 
-		if (peo.velRel.x<0.01 && peo.velRel.y<0.01) {
-			frames_stopped += 1;
-			Debug.Log("stoped");
-		} else {
-			frames_stopped = 0;
+		if (stuck_position != null) {
+			if ((transform.position - stuck_position).magnitude > .01f) {
+				frames_stopped = 0;
+			} else {
+				frames_stopped += 1;
+				Debug.Log("STUCK! " + transform.position + " " + stuck_position);
+			}
+		}
+
+		if (frames_stopped == 0 || stuck_position == null) {
+			stuck_position = transform.position;
 		}
 
 		switch (GroundDirection) {
@@ -115,6 +145,7 @@ public class Zoomer : MonoBehaviour {
 				} else {
 					GroundDirection = Directions.down;
 				}
+				direction_changed = true;
 			}
 			break;
 		}
@@ -124,22 +155,7 @@ public class Zoomer : MonoBehaviour {
 			peo.vel = Vector3.zero;
 			frames_stopped = 0;
 			peo.acc = Vector3.zero;
-
-//			switch (GroundDirection) {
-//			case Directions.down:
-//				transform.Rotate(new Vector3(0f, 0f, 0f));
-//				break;
-//			case Directions.right:
-//				transform.Rotate(new Vector3(0f, 90f, 0f));
-//				break;
-//			case Directions.up:
-//				transform.Rotate(new Vector3(0f, 180f, 0f));
-//				break;
-//			case Directions.left:
-//				transform.Rotate(new Vector3(0f, 270f, 0f));
-//				break;
-//			}
-
+			UpdateSpriteRotation();
 		}
 	}
 }
