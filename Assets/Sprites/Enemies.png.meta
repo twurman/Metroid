@@ -3,6 +3,7 @@ guid: 63f79bfdeb131eb48b9bfca34cf07bb0
 TextureImporter:
   fileIDToRecycleName:
     21300000: Skree
+    21300002: Floater
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -51,6 +52,16 @@ TextureImporter:
         y: 283
         width: 16
         height: 24
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Floater
+      rect:
+        serializedVersion: 2
+        x: 422
+        y: 283
+        width: 16
+        height: 8
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
