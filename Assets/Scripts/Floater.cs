@@ -4,7 +4,6 @@ using System.Collections;
 public class Floater : PE_Obj {
 
 	public float hitDamage = 0f;
-	private bool collided = false;
 	
 	// Update is called once per frame
 	void Update () {

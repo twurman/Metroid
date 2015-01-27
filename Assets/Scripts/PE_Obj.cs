@@ -60,7 +60,9 @@ public class PE_Obj : MonoBehaviour {
 	bool IgnoreCollision(Collider other) {
 		bool ignore = (other.GetComponent<Enemy> () != null && gameObject.layer == LayerMask.NameToLayer ("Player Bullet"))
 			|| (GetComponent<Enemy> () != null && other.gameObject.layer == LayerMask.NameToLayer ("Player Bullet"))
-			|| (gameObject.layer == LayerMask.NameToLayer("Enemy") && other.gameObject.layer == LayerMask.NameToLayer("Player"));
+			|| (gameObject.layer == LayerMask.NameToLayer("Enemy") && other.gameObject.layer == LayerMask.NameToLayer("Player"))
+			|| (gameObject.tag == "Door" && other.gameObject.layer == LayerMask.NameToLayer("Player"))
+			|| (other.gameObject.tag == "Door" && gameObject.layer == LayerMask.NameToLayer("Player"));
 		return ignore;
 	}
 	
