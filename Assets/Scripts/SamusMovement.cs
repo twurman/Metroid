@@ -146,13 +146,13 @@ public class SamusMovement : MonoBehaviour
 						hScale = -1;
 				}
 
-				if (Input.GetAxis ("Vertical") < 0 && GetComponent<PE_Controller>().grounded) {
+				if (Input.GetAxis ("Vertical") < 0 && GetComponent<PE_Controller>().grounded && !crouching) {
 						vScale = .5f;
 						Vector3 pos = GetComponent<PE_Obj>().pos0;
 						pos.y += vScale * transform.collider.bounds.size.y;
 						GetComponent<PE_Obj>().pos0 = pos;
 						crouching = true;
-				} else if (Input.GetAxis ("Vertical") > 0) {
+				} else if (Input.GetAxis ("Vertical") > 0 && crouching) {
 						vScale = 1;
 						Vector3 pos = GetComponent<PE_Obj>().pos0;
 						pos.y += vScale * transform.collider.bounds.size.y;

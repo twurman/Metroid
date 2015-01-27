@@ -67,11 +67,11 @@ public class PE_Controller : MonoBehaviour {
 	}
 
 	void FixedUpdate(){
-		if(adjustPos){
-			Vector3 pos = GetComponent<PE_Obj>().pos0;
-			pos.y += transform.collider.bounds.size.y;
-			GetComponent<PE_Obj>().pos0 = pos;
-			adjustPos = false;
-		}
+//		if(adjustPos){
+//			Vector3 pos = GetComponent<PE_Obj>().pos0;
+//			pos.y += transform.collider.bounds.size.y;
+//			GetComponent<PE_Obj>().pos0 = pos;
+//			adjustPos = false;
+//		}
 	}
 }
