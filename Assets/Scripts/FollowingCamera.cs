@@ -14,8 +14,16 @@ public class FollowingCamera : MonoBehaviour {
 		if (target)
 		{
 			Vector3 point = camera.WorldToViewportPoint(target.position);
-			Vector3 delta = target.position - camera.ViewportToWorldPoint(new Vector3(0.5f, point.y, point.z)); //(new Vector3(0.5, 0.5, point.z));
+
+			Vector3 delta = target.position - camera.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, point.z)); //(new Vector3(0.5, 0.5, point.z));
 			Vector3 destination = transform.position + delta;
+
+			if (target.position.x < 120f) {
+				destination.y = 6.9f;
+			} else {
+				destination.x = 127f;
+			}
+
 			transform.position = Vector3.SmoothDamp(transform.position, destination, ref velocity, dampTime);
 		}
 
