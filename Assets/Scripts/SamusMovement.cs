@@ -156,10 +156,18 @@ public class SamusMovement : MonoBehaviour
 						crouching = true;
 				} else if (Input.GetAxis ("Vertical") > 0 && crouching) {
 						vScale = 1;
+						
 						Vector3 pos = GetComponent<PE_Obj>().pos0;
 						pos.y += vScale * transform.collider.bounds.size.y;
-						GetComponent<PE_Obj>().pos0 = pos;
-						crouching = false;
+
+						Vector3 StandingCheck = new Vector3(transform.position.x, pos.y, pos.z);
+
+						if (Physics.OverlapSphere(StandingCheck, 0.1f).Length == 0) {
+							GetComponent<PE_Obj>().pos0 = pos;
+							crouching = false;
+						} else {
+							vScale = .5f;
+						}
 				}
 			
 				transform.localScale = new Vector3 (hScale, vScale, 1);
