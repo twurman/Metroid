@@ -10,6 +10,7 @@ TextureImporter:
     21300010: Floater_Hit
     21300012: Skree_Hit
     21300014: Floater_2
+    21300016: Enemy_Bullet
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -128,6 +129,16 @@ TextureImporter:
         y: 283
         width: 16
         height: 8
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Enemy_Bullet
+      rect:
+        serializedVersion: 2
+        x: 205
+        y: 283
+        width: 7
+        height: 7
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
