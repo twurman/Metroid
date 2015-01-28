@@ -31,4 +31,11 @@ public class Bullet : MonoBehaviour {
 		}
 	}
 
+	void OnTriggerEnter(Collider other){
+		if(other.gameObject.layer == LayerMask.NameToLayer("Ground")){
+			PhysEngine.objs.Remove(peo);
+			Destroy(this.gameObject);
+		}
+	}
+
 }
