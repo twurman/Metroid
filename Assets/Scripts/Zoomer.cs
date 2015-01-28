@@ -25,6 +25,10 @@ public class Zoomer : MonoBehaviour {
 
 	public float DirectionChangeVelocity = 1f;
 
+	public float hitDamage = 8f;
+
+	private bool startMovement = false;
+
 	// Use this for initialization
 	void Start () {
 		peo = this.GetComponent<PE_Obj>();
@@ -52,11 +56,24 @@ public class Zoomer : MonoBehaviour {
 		}
 	}
 
+	void OnTriggerEnter(Collider other) {
+		// Ignore bullet collisions, as they are handled by Enemy
+		if (other.gameObject.layer == LayerMask.NameToLayer ("Player")) {
+			other.GetComponent<SamusMovement>().CauseDamage(hitDamage);
+		}
+	}
+
+	void OnBecameVisible(){
+		startMovement = true;
+		print("started movement");
+	}
+
 	// Update is called once per frame
 	void FixedUpdate () {
 		//Debug.Log(peo.vel + "," + peo.acc + "," + GroundDirection + "," + peo.velRel);
 		//Debug.Log(peo.velRel.x==0);
 		//Debug.Log (peo.velRel.y==0);
+		if(!startMovement) return;
 
 		bool direction_changed = false;
 
