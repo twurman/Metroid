@@ -9,6 +9,8 @@ public class Zoomer : MonoBehaviour {
 
 	private PE_Obj peo;
 
+	public float DirChangeForStuck = 0.01f;
+
 	private Vector3 stuck_position;
 
 	public int frames_stopped = 0;
@@ -78,7 +80,7 @@ public class Zoomer : MonoBehaviour {
 		bool direction_changed = false;
 
 		if (stuck_position != null) {
-			if ((transform.position - stuck_position).magnitude > .01f) {
+			if ((transform.position - stuck_position).magnitude > DirChangeForStuck) {
 				frames_stopped = 0;
 			} else {
 				frames_stopped += 1;
