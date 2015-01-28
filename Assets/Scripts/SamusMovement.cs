@@ -177,6 +177,7 @@ public class SamusMovement : MonoBehaviour
 		
 		Vector3 StandingCheck = new Vector3(transform.position.x, pos.y, pos.z);
 
-		return Physics.OverlapSphere(StandingCheck, 0.1f).Length == 0;
+		return Physics.OverlapSphere(new Vector3(transform.position.x - transform.collider.bounds.size.x / 2f, pos.y, pos.z), 0.1f).Length == 0 &&
+			Physics.OverlapSphere(new Vector3(transform.position.x + transform.collider.bounds.size.x / 2f, pos.y, pos.z), 0.1f).Length == 0;
 	}
 }
