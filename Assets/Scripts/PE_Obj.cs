@@ -157,7 +157,7 @@ public class PE_Obj : MonoBehaviour {
 					a1.y -= transform.collider.bounds.size.y/2f;
 					a0 = a1 - delta;
 					b = that.pos1;
-					b.y += that.transform.lossyScale.y/2f;
+					b.y += that.transform.collider.bounds.size.y/2f;
 					if ( PhysEngine.GEQ( a0.y, b.y ) && b.y > a1.y) {
 						posFinal.y += Mathf.Abs( a1.y - b.y );
 						// Handle vel
@@ -174,7 +174,7 @@ public class PE_Obj : MonoBehaviour {
 					a1.y += transform.collider.bounds.size.y/2f;
 					a0 = a1 - delta;
 					b = that.pos1;
-					b.y -= that.transform.lossyScale.y/2f;
+					b.y -= that.transform.collider.bounds.size.y/2f;
 					if ( PhysEngine.LEQ( a0.y, b.y ) && b.y < a1.y) {
 						posFinal.y -= Mathf.Abs( a1.y - b.y );
 						// Handle vel
@@ -190,8 +190,8 @@ public class PE_Obj : MonoBehaviour {
 					a1.y += transform.collider.bounds.size.y/2f;
 					a0 = a1 - delta;
 					b = that.pos1;
-					b.x -= that.transform.lossyScale.x/2f;
-					b.y -= that.transform.lossyScale.y/2f;
+					b.x -= that.transform.collider.bounds.size.x/2f;
+					b.y -= that.transform.collider.bounds.size.y/2f;
 				}
 
 				if (dir == PE_Dir.upLeft) { // Bottom, Right is the comparison corner
@@ -200,8 +200,8 @@ public class PE_Obj : MonoBehaviour {
 					a1.y += transform.collider.bounds.size.y/2f;
 					a0 = a1 - delta;
 					b = that.pos1;
-					b.x += that.transform.lossyScale.x/2f;
-					b.y -= that.transform.lossyScale.y/2f;
+					b.x += that.transform.collider.bounds.size.x/2f;
+					b.y -= that.transform.collider.bounds.size.y/2f;
 				}
 
 				if (dir == PE_Dir.downLeft) { // Top, Right is the comparison corner
@@ -210,8 +210,8 @@ public class PE_Obj : MonoBehaviour {
 					a1.y -= transform.collider.bounds.size.y/2f;
 					a0 = a1 - delta;
 					b = that.pos1;
-					b.x += that.transform.lossyScale.x/2f;
-					b.y += that.transform.lossyScale.y/2f;
+					b.x += that.transform.collider.bounds.size.x/2f;
+					b.y += that.transform.collider.bounds.size.y/2f;
 				}
 
 				if (dir == PE_Dir.downRight) { // Top, Left is the comparison corner
@@ -220,8 +220,8 @@ public class PE_Obj : MonoBehaviour {
 					a1.y -= transform.collider.bounds.size.y/2f;
 					a0 = a1 - delta;
 					b = that.pos1;
-					b.x -= that.transform.lossyScale.x/2f;
-					b.y += that.transform.lossyScale.y/2f;
+					b.x -= that.transform.collider.bounds.size.x/2f;
+					b.y += that.transform.collider.bounds.size.y/2f;
 				}
 
 				// In the x dimension, find how far along the line segment between a0 and a1 we need to go to encounter b
