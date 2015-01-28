@@ -4,6 +4,7 @@ using System.Collections;
 
 public class SamusMovement : MonoBehaviour
 {
+		public bool CrouchEnabled = false;
 		public float BulletOffset_x = 0f;
 		public float BulletOffset_y = 0f;
 		public float BulletOffset_y_vertical = 0f;
@@ -129,7 +130,7 @@ public class SamusMovement : MonoBehaviour
 					} else if(crouchTimer % 4 == 3){
 						ChangeSprite(Samus_Dir.c4);
 					}
-				} else if(Input.GetButton("Vertical")){
+				} else if(Input.GetAxis ("Vertical") > 0){
 					ChangeSprite(Samus_Dir.up);
 				} else {
 					ChangeSprite(Samus_Dir.standing);
@@ -146,7 +147,7 @@ public class SamusMovement : MonoBehaviour
 						hScale = -1;
 				}
 
-				if (Input.GetAxis ("Vertical") < 0 && GetComponent<PE_Controller>().grounded && !crouching) {
+				if (CrouchEnabled && Input.GetAxis ("Vertical") < 0 && GetComponent<PE_Controller>().grounded && !crouching) {
 						vScale = .5f;
 						Vector3 pos = GetComponent<PE_Obj>().pos0;
 						pos.y += vScale * transform.collider.bounds.size.y;
