@@ -99,7 +99,8 @@ public class SamusMovement : MonoBehaviour
 		{
 				if (other.gameObject.layer == LayerMask.NameToLayer ("Enemy Bullet")) {
 						CauseDamage (other.GetComponent<Bullet> ().damage);
-						// TODO : destory bullet
+						PhysEngine.objs.Remove(other.GetComponent<PE_Obj>());
+						Destroy(other.gameObject);
 				}
 				if(other.gameObject.layer == LayerMask.NameToLayer("Ground")){
 					GetComponent<PE_Controller>().falling = true;
