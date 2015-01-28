@@ -47,10 +47,12 @@ public class PE_Controller : MonoBehaviour {
 					vel.y = jumpVel;
 					peo.acc.y = 9.8f;
 				} else {
-					float hScale = transform.localScale.x;
-					transform.localScale = new Vector3 (hScale, 1, 1);
-					GetComponent<SamusMovement>().crouching = false;
-					adjustPos = true;
+					if (GetComponent<SamusMovement>().CanStand()) {
+						float hScale = transform.localScale.x;
+						transform.localScale = new Vector3 (hScale, 1, 1);
+						GetComponent<SamusMovement>().crouching = false;
+						adjustPos = true;
+					}
 				}
 			}
 		} else if(!falling && !(Input.GetButton("Jump"))){

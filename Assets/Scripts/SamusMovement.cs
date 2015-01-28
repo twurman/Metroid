@@ -160,9 +160,7 @@ public class SamusMovement : MonoBehaviour
 						Vector3 pos = GetComponent<PE_Obj>().pos0;
 						pos.y += vScale * transform.collider.bounds.size.y;
 
-						Vector3 StandingCheck = new Vector3(transform.position.x, pos.y, pos.z);
-
-						if (Physics.OverlapSphere(StandingCheck, 0.1f).Length == 0) {
+						if (CanStand()) {
 							GetComponent<PE_Obj>().pos0 = pos;
 							crouching = false;
 						} else {
@@ -172,4 +170,13 @@ public class SamusMovement : MonoBehaviour
 			
 				transform.localScale = new Vector3 (hScale, vScale, 1);
 		}
+
+	public bool CanStand() {
+		Vector3 pos = GetComponent<PE_Obj>().pos0;
+		pos.y += transform.collider.bounds.size.y;
+		
+		Vector3 StandingCheck = new Vector3(transform.position.x, pos.y, pos.z);
+
+		return Physics.OverlapSphere(StandingCheck, 0.1f).Length == 0;
+	}
 }
