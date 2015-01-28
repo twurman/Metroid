@@ -7,9 +7,6 @@ public enum Directions {
 
 public class Zoomer : MonoBehaviour {
 
-	public PE_Obj player;
-	public float AttackDistance = 10f;
-
 	private PE_Obj peo;
 
 	private Vector3 stuck_position;
@@ -60,9 +57,6 @@ public class Zoomer : MonoBehaviour {
 		//Debug.Log(peo.vel + "," + peo.acc + "," + GroundDirection + "," + peo.velRel);
 		//Debug.Log(peo.velRel.x==0);
 		//Debug.Log (peo.velRel.y==0);
-//		if (Mathf.Abs(player.transform.position.x - peo.transform.position.x) > AttackDistance) {
-//			return;
-//		}
 
 		bool direction_changed = false;
 
