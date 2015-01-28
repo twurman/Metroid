@@ -29,10 +29,12 @@ public class Skree : PE_Obj {
 
 	void FixedUpdate() {
 		if (falling) {
+			float dist = Mathf.Abs(player.transform.position.x - this.gameObject.transform.position.x);
+			float accX =  dist > Acceleration ? Acceleration : dist;
 			if (player.transform.position.x - this.gameObject.transform.position.x > 0) {
-				acc.x =  1 * Acceleration;
+				acc.x =  1 * accX;
 			} else if (player.transform.position.x - this.gameObject.transform.position.x < 0) {
-				acc.x = -1 * Acceleration;
+				acc.x = -1 * accX;
 			}
 		}
 	}
