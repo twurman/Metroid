@@ -237,7 +237,7 @@ public class PE_Obj : MonoBehaviour {
 				// Use pU.y vs. b.y to tell which side of PE_Obj "that" PE_Obj "this" should be on
 				switch (dir) {
 				case PE_Dir.upRight:
-					if (pU.y > b.y || u == 0) { // hit the left side
+					if (pU.y > b.y || PhysEngine.EQ(u, 0)) { // hit the left side
 						posFinal.x -= offsetX;
 
 						// Handle vel
@@ -253,7 +253,7 @@ public class PE_Obj : MonoBehaviour {
 					break;
 
 				case PE_Dir.downRight:
-					if (pU.y < b.y || u == 0) { // hit the left side
+					if (pU.y < b.y || PhysEngine.EQ(u, 0)) { // hit the left side
 						posFinal.x -= offsetX;
 						
 						// Handle vel
@@ -270,7 +270,7 @@ public class PE_Obj : MonoBehaviour {
 					break;
 					
 				case PE_Dir.upLeft:
-					if (pU.y > b.y || u == 0) { // hit the right side
+					if (pU.y > b.y || PhysEngine.EQ(u, 0)) { // hit the right side
 						posFinal.x += offsetX;
 						
 						// Handle vel
@@ -286,7 +286,7 @@ public class PE_Obj : MonoBehaviour {
 					break;
 					
 				case PE_Dir.downLeft:
-					if (pU.y < b.y || u == 0) { // hit the right side
+					if (pU.y < b.y || PhysEngine.EQ(u, 0)) { // hit the right side
 						posFinal.x += offsetX;
 						
 						// Handle vel
