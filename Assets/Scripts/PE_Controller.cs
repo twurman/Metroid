@@ -21,6 +21,7 @@ public class PE_Controller : MonoBehaviour {
 	
 	public Vector2	maxSpeed = new Vector2( 10, 15 ); // Different x & y to limit maximum falling velocity
 	private bool 	adjustPos = false;
+	public bool		floating = false;
 
 	private PhysEngine physEngine;
 	
@@ -37,8 +38,18 @@ public class PE_Controller : MonoBehaviour {
 		grounded = (peo.ground != null);
 		
 		// Horizontal movement
-		float vX = Input.GetAxis("Horizontal"); // Returns a number [-1..1]
-		vel.x = vX * hSpeed;
+		if(floating){
+			if(Input.GetAxis("Horizontal") > 0){
+				vel.x += 0.1f;
+			} else if(Input.GetAxis("Horizontal") < 0){
+				vel.x -= 0.1f;
+			}
+
+
+		} else {
+			float vX = Input.GetAxis("Horizontal"); // Returns a number [-1..1]
+			vel.x = vX * hSpeed;
+		}
 
 		// handle jump
 		if(grounded){

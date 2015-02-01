@@ -50,10 +50,15 @@ public class SamusMovement : MonoBehaviour
 		{
 				if(transform.position.y > 12.5 && gravitySwap){
 						physEngine.gravity = new Vector3(0, 1f, 0);
-						GetComponent<PE_Controller>().maxSpeed = new Vector2(10f, 1f);
-				} 
+						GetComponent<PE_Controller>().maxSpeed = new Vector2(5f, 1f);
+						GetComponent<PE_Controller>().floating = true;
+				}  else if(gravitySwap) {
+					physEngine.gravity = new Vector3(0, -9.8f, 0);
+					GetComponent<PE_Controller>().maxSpeed = new Vector2(10f, 15f);
+					GetComponent<PE_Controller>().floating = false;
+				}
 		
-				if (Input.GetButton ("Fire") && Time.time > nextFire && !crouching) {
+		if (Input.GetButton ("Fire") && Time.time > nextFire && !crouching) {
 						nextFire = Time.time + fireRate;
 
 						GameObject clone;
@@ -177,7 +182,6 @@ public class SamusMovement : MonoBehaviour
 				}
 			
 				transform.localScale = new Vector3 (hScale, vScale, 1);
-				
 		}
 
 	public bool CanStand() {
