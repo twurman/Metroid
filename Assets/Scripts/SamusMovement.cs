@@ -20,8 +20,10 @@ public class SamusMovement : MonoBehaviour
 		public bool gravitySwap = false;
 		private PhysEngine physEngine;
 
+		public float InvulnerabilityAfterHitTime = 0.5f;
 
 		public bool invulnerable = false;
+		private float invuln_until = 0.0f;
 
 		public enum Samus_Dir { // The direction in which the PE_Obj is moving
 			standing,
@@ -51,6 +53,11 @@ public class SamusMovement : MonoBehaviour
 
 		void Update ()
 		{
+				if (invulnerable && Time.time > invuln_until) {
+					invulnerable = false;
+				}
+
+				
 				if(transform.position.y > 12.5 && gravitySwap){
 						physEngine.gravity = new Vector3(0, 1f, 0);
 						GetComponent<PE_Controller>().maxSpeed = new Vector2(5f, 1f);
@@ -63,6 +70,7 @@ public class SamusMovement : MonoBehaviour
 
 				if (Input.GetKey(KeyCode.G)) {
 					invulnerable = true;
+					invuln_until = float.MaxValue;
 				}
 		
 		if (Input.GetButton ("Fire") && Time.time > nextFire && !crouching) {
@@ -129,15 +137,23 @@ public class SamusMovement : MonoBehaviour
 
 		public void CauseDamage (float amount)
 		{
-				if (!invulnerable) {
-					health -= amount;
-					if (health <= 0) {
-							//Destroy(this.gameObject);
-							Debug.Log ("player died");
-							Application.LoadLevel(Application.loadedLevel);
-					}
-					UpdateHealthCounter ();
+				if (invulnerable) {
+					return;
 				}
+			
+				if (amount > 0) {
+					invulnerable = true;
+					invuln_until = Time.time + InvulnerabilityAfterHitTime;
+				}
+
+
+				health -= amount;
+				if (health <= 0) {
+						//Destroy(this.gameObject);
+						Debug.Log ("player died");
+						Application.LoadLevel(Application.loadedLevel);
+				}
+				UpdateHealthCounter ();
 		}
 
 		void FixedUpdate ()
