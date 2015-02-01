@@ -19,8 +19,13 @@ public class Skree : PE_Obj {
 
 	public float Acceleration = 1f;
 
+	private float bullet_release_time = 0f;
+
+	public float bullet_delay = 0.2f;
+
 	// Update is called once per frame
 	void Update () {
+		if (collided) return;
 		if (Mathf.Abs(player.transform.position.x - this.gameObject.transform.position.x) < AttackDistance) {
 			this.grav = PE_GravType.constant;
 			falling = true;
@@ -28,6 +33,7 @@ public class Skree : PE_Obj {
 	}
 
 	void FixedUpdate() {
+		if (collided) return;
 		if (falling) {
 			float dist = Mathf.Abs(player.transform.position.x - this.gameObject.transform.position.x);
 			float accX =  dist > Acceleration ? Acceleration : dist;
@@ -53,11 +59,15 @@ public class Skree : PE_Obj {
 	}
 	
 	void LateUpdate() {
-		if (collided) {
+		if (collided && Time.time >= bullet_release_time) {
 			Destroy (this.gameObject);
 			PhysEngine.objs.Remove(this);
-		}
 
+			CreateBullet(new Vector3(.75f, 1.5f, 0f));
+			CreateBullet(new Vector3(-.75f, 1.5f, 0f));
+			CreateBullet(new Vector3(-1f, 0f, 0f));
+			CreateBullet(new Vector3(1f, 0f, 0f));
+		}
 	}
 
 
@@ -67,15 +77,14 @@ public class Skree : PE_Obj {
 			other.GetComponent<SamusMovement>().CauseDamage(fallDamage);
 		}
 
-		if (other.gameObject.layer == LayerMask.NameToLayer("Ground")) {
-			CreateBullet(new Vector3(.75f, 1.5f, 0f));
-			CreateBullet(new Vector3(-.75f, 1.5f, 0f));
-			CreateBullet(new Vector3(-1f, 0f, 0f));
-			CreateBullet(new Vector3(1f, 0f, 0f));
-		}
 
 		if (other.gameObject.layer != LayerMask.NameToLayer ("Player Bullet")) {
             collided = true;
+			acc.x = 0;
+			acc.y = 0;
+			vel.x = 0;
+			vel0.x = 0;
+			bullet_release_time = Time.time + bullet_delay;
         }
 	}
 }
