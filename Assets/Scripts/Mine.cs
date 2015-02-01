@@ -21,7 +21,6 @@ public class Mine : MonoBehaviour {
 	void Update () {
 		if(exploding){
 			if(Time.time >= explodeTime + destroyDelay) {
-				print ("destroy");
 				Destroy(this.gameObject);
 			} else if(Time.time >= explodeTime + delay){
 				GetComponent<SpriteRenderer>().color = Color.white;
