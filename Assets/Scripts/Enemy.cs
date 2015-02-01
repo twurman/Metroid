@@ -42,8 +42,7 @@ public class Enemy : MonoBehaviour {
 
 			if(Random.value <= HealthDropChance_1) {
 				GameObject clone = Instantiate(HealthDrop1, transform.position, transform.rotation) as GameObject;
-			}
-			if(Random.value <= HealthDropChance_2) {
+			} else if(Random.value <= HealthDropChance_2) {
 				GameObject clone = Instantiate(HealthDrop2, transform.position, transform.rotation) as GameObject;
 			}
 		}
