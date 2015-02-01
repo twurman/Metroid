@@ -53,7 +53,7 @@ public class SamusMovement : MonoBehaviour
 		{
 				if(transform.position.y > 12.5 && gravitySwap){
 						physEngine.gravity = new Vector3(0, 1f, 0);
-						GetComponent<PE_Controller>().maxSpeed = new Vector2(5f, 1f);
+						GetComponent<PE_Controller>().maxSpeed = new Vector2(2f, 1f);
 						GetComponent<PE_Controller>().floating = true;
 				}  else if(gravitySwap) {
 					physEngine.gravity = new Vector3(0, -9.8f, 0);
