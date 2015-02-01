@@ -17,6 +17,8 @@ public class SamusMovement : MonoBehaviour
 		public bool crouching = false;
 		public Sprite standing, upwards, crouch1, crouch2, crouch3, crouch4;
 		private int crouchTimer = 0;
+		public bool gravitySwap = false;
+		private PhysEngine physEngine;
 
 		public enum Samus_Dir { // The direction in which the PE_Obj is moving
 			standing,
@@ -41,15 +43,21 @@ public class SamusMovement : MonoBehaviour
 		void Start ()
 		{
 				UpdateHealthCounter ();
+				physEngine = Camera.main.GetComponent<PhysEngine>();
 		}
 
 		void Update ()
 		{
+				if(transform.position.y > 12.5 && gravitySwap){
+						physEngine.gravity = new Vector3(0, 1f, 0);
+						GetComponent<PE_Controller>().maxSpeed = new Vector2(10f, 1f);
+				} 
+		
 				if (Input.GetButton ("Fire") && Time.time > nextFire && !crouching) {
 						nextFire = Time.time + fireRate;
 
 						GameObject clone;
-						if (Input.GetButton ("Vertical")) {
+						if (Input.GetAxis("Vertical") > 0) {
 								Vector3 bullet_pos = new Vector3 (
 											transform.position.x,
 			                                transform.position.y + BulletOffset_y_vertical,
@@ -169,6 +177,7 @@ public class SamusMovement : MonoBehaviour
 				}
 			
 				transform.localScale = new Vector3 (hScale, vScale, 1);
+				
 		}
 
 	public bool CanStand() {

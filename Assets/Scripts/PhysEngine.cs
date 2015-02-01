@@ -27,7 +27,7 @@ public class PhysEngine : MonoBehaviour {
 	static public List<PE_Obj>	objs;
 	static public float			closeEnough = 0.2f;
 
-	public Vector3		gravity = new Vector3(0,-9.8f,0);
+	public Vector3				gravity = new Vector3(0,-9.8f,0);
 
 	// Use this for initialization
 	void Awake() {

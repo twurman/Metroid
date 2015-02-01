@@ -21,10 +21,13 @@ public class PE_Controller : MonoBehaviour {
 	
 	public Vector2	maxSpeed = new Vector2( 10, 15 ); // Different x & y to limit maximum falling velocity
 	private bool 	adjustPos = false;
+
+	private PhysEngine physEngine;
 	
 	// Use this for initialization
 	void Start () {
 		peo = GetComponent<PE_Obj>();
+		physEngine = Camera.main.GetComponent<PhysEngine>();
 	}
 	
 	// Update is called once per frame
@@ -45,7 +48,7 @@ public class PE_Controller : MonoBehaviour {
 				if(!GetComponent<SamusMovement>().crouching){
 					peo.ground = null;
 					vel.y = jumpVel;
-					peo.acc.y = 9.8f;
+					peo.acc.y = -physEngine.gravity.y;
 				} else {
 					if (GetComponent<SamusMovement>().CanStand()) {
 						float hScale = transform.localScale.x;
@@ -62,7 +65,7 @@ public class PE_Controller : MonoBehaviour {
 		} if(!falling && peo.pos0.y >= jumpStart + maxJumpHeight){
 			falling = true;
 		} if(falling){
-			peo.acc.y = -9.8f;
+			peo.acc.y = physEngine.gravity.y;
 		}
 		
 		peo.vel = vel;
@@ -75,5 +78,7 @@ public class PE_Controller : MonoBehaviour {
 			GetComponent<PE_Obj>().pos0 = pos;
 			adjustPos = false;
 		}
+		peo.vel.x = Mathf.Sign(peo.vel.x) * Mathf.Min(Mathf.Abs(peo.vel.x), Mathf.Abs(maxSpeed.x));
+		peo.vel.y = Mathf.Sign(peo.vel.y) * Mathf.Min(Mathf.Abs(peo.vel.y), Mathf.Abs(maxSpeed.y));
 	}
 }
