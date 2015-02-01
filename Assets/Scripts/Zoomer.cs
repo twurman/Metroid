@@ -9,6 +9,8 @@ public class Zoomer : MonoBehaviour {
 
 	private PE_Obj peo;
 
+	private Enemy enemy;
+
 	public float DirChangeForStuck = 0.01f;
 
 	private Vector3 stuck_position;
@@ -34,6 +36,7 @@ public class Zoomer : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		peo = this.GetComponent<PE_Obj>();
+		enemy = this.GetComponent<Enemy>();
 		UpdateSpriteRotation();
 	}
 
@@ -74,7 +77,7 @@ public class Zoomer : MonoBehaviour {
 		//Debug.Log(peo.vel + "," + peo.acc + "," + GroundDirection + "," + peo.velRel);
 		//Debug.Log(peo.velRel.x==0);
 		//Debug.Log (peo.velRel.y==0);
-		if(!startMovement) return;
+		if(!startMovement || enemy.frozen) return;
 
 		bool direction_changed = false;
 

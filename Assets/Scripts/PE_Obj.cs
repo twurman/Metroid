@@ -63,7 +63,19 @@ public class PE_Obj : MonoBehaviour {
 			|| (gameObject.layer == LayerMask.NameToLayer("Enemy") && other.gameObject.layer == LayerMask.NameToLayer("Player"))
 			|| (gameObject.tag == "Door" && other.gameObject.layer == LayerMask.NameToLayer("Player"))
 			|| (other.gameObject.tag == "Door" && gameObject.layer == LayerMask.NameToLayer("Player"));
-		return ignore;
+
+		if (ignore) return ignore;
+
+		Enemy en1 = this.GetComponent<Enemy>();
+		if (en1 != null && en1.frozen) {
+			return true;
+		}
+
+		Enemy en2 = other.GetComponent<Enemy>();
+		if (en2 != null && en2.frozen) {
+			return true;
+		}
+		return false;
 	}
 	
 	void OnTriggerEnter(Collider other) {
