@@ -67,7 +67,6 @@ public class Zoomer : MonoBehaviour {
 
 	void OnBecameVisible(){
 		startMovement = true;
-		print("started movement");
 	}
 
 	// Update is called once per frame

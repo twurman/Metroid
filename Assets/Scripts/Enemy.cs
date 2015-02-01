@@ -33,7 +33,7 @@ public class Enemy : MonoBehaviour {
 		hitTimer++;
 	}
 
-	void CauseDamage(float amount) {
+	public void CauseDamage(float amount) {
 		health -= amount;
 		if (health <= 0) {
 			Debug.Log ("died");
