@@ -56,11 +56,6 @@ public class Skree : PE_Obj {
 		if (collided) {
 			Destroy (this.gameObject);
 			PhysEngine.objs.Remove(this);
-
-			CreateBullet(new Vector3(.75f, 1.5f, 0f));
-			CreateBullet(new Vector3(-.75f, 1.5f, 0f));
-			CreateBullet(new Vector3(-1f, 0f, 0f));
-			CreateBullet(new Vector3(1f, 0f, 0f));
 		}
 
 	}
@@ -71,6 +66,14 @@ public class Skree : PE_Obj {
 		if (other.gameObject.layer == LayerMask.NameToLayer ("Player")) {
 			other.GetComponent<SamusMovement>().CauseDamage(fallDamage);
 		}
+
+		if (other.gameObject.layer == LayerMask.NameToLayer("Ground")) {
+			CreateBullet(new Vector3(.75f, 1.5f, 0f));
+			CreateBullet(new Vector3(-.75f, 1.5f, 0f));
+			CreateBullet(new Vector3(-1f, 0f, 0f));
+			CreateBullet(new Vector3(1f, 0f, 0f));
+		}
+
 		if (other.gameObject.layer != LayerMask.NameToLayer ("Player Bullet")) {
             collided = true;
         }
