@@ -20,6 +20,9 @@ public class SamusMovement : MonoBehaviour
 		public bool gravitySwap = false;
 		private PhysEngine physEngine;
 
+
+		public bool invulnerable = false;
+
 		public enum Samus_Dir { // The direction in which the PE_Obj is moving
 			standing,
 			up,
@@ -56,6 +59,10 @@ public class SamusMovement : MonoBehaviour
 					physEngine.gravity = new Vector3(0, -9.8f, 0);
 					GetComponent<PE_Controller>().maxSpeed = new Vector2(10f, 15f);
 					GetComponent<PE_Controller>().floating = false;
+				} 
+
+				if (Input.GetKey(KeyCode.G)) {
+					invulnerable = true;
 				}
 		
 		if (Input.GetButton ("Fire") && Time.time > nextFire && !crouching) {
@@ -122,13 +129,15 @@ public class SamusMovement : MonoBehaviour
 
 		public void CauseDamage (float amount)
 		{
-				health -= amount;
-				if (health <= 0) {
-						//Destroy(this.gameObject);
-						Debug.Log ("player died");
-						Application.LoadLevel(Application.loadedLevel);
+				if (!invulnerable) {
+					health -= amount;
+					if (health <= 0) {
+							//Destroy(this.gameObject);
+							Debug.Log ("player died");
+							Application.LoadLevel(Application.loadedLevel);
+					}
+					UpdateHealthCounter ();
 				}
-				UpdateHealthCounter ();
 		}
 
 		void FixedUpdate ()
