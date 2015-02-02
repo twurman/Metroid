@@ -3,6 +3,7 @@ guid: 5e5cd60bb01e9454c98f359e326410ac
 TextureImporter:
   fileIDToRecycleName:
     21300000: Crouch Power Up
+    21300002: Fuel_Cell
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -51,6 +52,16 @@ TextureImporter:
         y: 148
         width: 12
         height: 13
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Fuel_Cell
+      rect:
+        serializedVersion: 2
+        x: 91
+        y: 68
+        width: 8
+        height: 8
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}

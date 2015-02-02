@@ -11,10 +11,14 @@ TextureImporter:
     21300012: Skree_Hit
     21300014: Floater_2
     21300016: Enemy_Bullet
+    21300018: Enemies_9
+    21300020: Zeb
+    21300022: Zeb_2
+    21300024: Zeb_Hit
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 1
+    enableMipMap: 0
     linearTexture: 0
     correctGamma: 0
     fadeOut: 0
@@ -139,6 +143,46 @@ TextureImporter:
         y: 283
         width: 7
         height: 7
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Enemies_9
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 208
+        width: 10
+        height: 4
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Zeb
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 261
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Zeb_2
+      rect:
+        serializedVersion: 2
+        x: 276
+        y: 261
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Zeb_Hit
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 261
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}

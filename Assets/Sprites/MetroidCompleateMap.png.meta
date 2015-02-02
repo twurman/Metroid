@@ -1,7 +1,10 @@
 fileFormatVersion: 2
 guid: 55ea4408a456d4873856cbb9dd085615
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: 1x4B
+    21300002: 5x1B
+    21300004: 16x1B
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -27,11 +30,11 @@ TextureImporter:
     filterMode: 0
     aniso: 16
     mipBias: -1
-    wrapMode: -1
+    wrapMode: 1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -42,6 +45,36 @@ TextureImporter:
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
-    sprites: []
+    sprites:
+    - name: 1x4B
+      rect:
+        serializedVersion: 2
+        x: 2287
+        y: 2034
+        width: 16
+        height: 64
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 5x1B
+      rect:
+        serializedVersion: 2
+        x: 2319
+        y: 2067
+        width: 80
+        height: 15
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 16x1B
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 947
+        width: 254
+        height: 14
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 

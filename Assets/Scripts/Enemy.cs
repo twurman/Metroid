@@ -57,7 +57,6 @@ public class Enemy : MonoBehaviour {
 	public void CauseDamage(float amount) {
 		health -= amount;
 		if (health <= 0) {
-			Debug.Log ("died");
 			Destroy (this.gameObject);
 			PhysEngine.objs.Remove(GetComponent<PE_Obj>());
 
@@ -87,7 +86,6 @@ public class Enemy : MonoBehaviour {
 			ChangeSprite(true);
 
 			if (!frozen) {
-				Debug.Log("FROZEN!");
 				frozen = true;
 				frozen_until = Time.time + frozen_duration;
 				PhysEngine.objs.Remove(this.GetComponent<PE_Obj>());

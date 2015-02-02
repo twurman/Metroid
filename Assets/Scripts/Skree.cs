@@ -5,7 +5,9 @@ public class Skree : PE_Obj {
 
 	public GameObject player;
 
-	public float AttackDistance = 5;
+	public float AttackDistanceX = 5;
+
+	public float AttackDistanceY = 10;
 
 	public float BulletDamage = 0f;
 
@@ -26,7 +28,8 @@ public class Skree : PE_Obj {
 	// Update is called once per frame
 	void Update () {
 		if (collided) return;
-		if (Mathf.Abs(player.transform.position.x - this.gameObject.transform.position.x) < AttackDistance) {
+		if (Mathf.Abs(player.transform.position.x - this.gameObject.transform.position.x) < AttackDistanceX
+		    && Mathf.Abs(player.transform.position.y - this.gameObject.transform.position.y) < AttackDistanceY) {
 			this.grav = PE_GravType.constant;
 			falling = true;
 		}
