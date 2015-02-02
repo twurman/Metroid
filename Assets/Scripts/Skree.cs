@@ -84,6 +84,7 @@ public class Skree : PE_Obj {
 			acc.y = 0;
 			vel.x = 0;
 			vel0.x = 0;
+			still = true;
 			bullet_release_time = Time.time + bullet_delay;
         }
 	}
