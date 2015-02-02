@@ -26,16 +26,17 @@ public class Enemy : MonoBehaviour {
 	public float HealthDropChance_2 = .25f;
 	public GameObject HealthDrop2;
 
-//	private List<RemovedEnemy> removed_enemies;
-
 	public float frozen_duration = 5f;
 
 	public bool frozen = false;
 	public float frozen_until = 0f;
-	
+
+	private SpriteRenderer spriteRenderer;
+
 	// Use this for initialization
 	void Start () {
 //		removed_enemies = new List<RemovedEnemy>();
+		spriteRenderer = this.GetComponent<SpriteRenderer>();
 	}
 	
 	// Update is called once per frame
@@ -69,11 +70,14 @@ public class Enemy : MonoBehaviour {
 	}
 
 	void ChangeSprite(bool gotHit){
+		if (spriteRenderer == null) {
+			return;
+		}
 		if(gotHit){
-			GetComponent<SpriteRenderer>().sprite = hit;
+			spriteRenderer.sprite = hit;
 			hitTimer = 0;
 		} else {
-			GetComponent<SpriteRenderer>().sprite = normal;
+			spriteRenderer.sprite = normal;
 		}
 	}
 
@@ -88,7 +92,6 @@ public class Enemy : MonoBehaviour {
 				frozen_until = Time.time + frozen_duration;
 				PhysEngine.objs.Remove(this.GetComponent<PE_Obj>());
 			}
-			//removed_enemies.Add(new RemovedEnemy(other.GetComponent<PE_Obj>(), Time.time + 
 		}
 	}
 
