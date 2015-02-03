@@ -15,6 +15,8 @@ TextureImporter:
     21300020: Zeb
     21300022: Zeb_2
     21300024: Zeb_Hit
+    21300026: Swooper
+    21300028: Swooper_Hit
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -183,6 +185,26 @@ TextureImporter:
         y: 261
         width: 16
         height: 16
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Swooper
+      rect:
+        serializedVersion: 2
+        x: 214
+        y: 283
+        width: 24
+        height: 19
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Swooper_Hit
+      rect:
+        serializedVersion: 2
+        x: 292
+        y: 283
+        width: 24
+        height: 19
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}

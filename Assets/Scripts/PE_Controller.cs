@@ -39,6 +39,7 @@ public class PE_Controller : MonoBehaviour {
 
 	private void UpdateFuelCounter ()
 	{
+		if(!fuelCounter) return;
 		if(thrustEnabled){
 			fuelCounter.text = "FUEL.." + fuel;
 		} else {
