@@ -10,10 +10,10 @@ public class Start_Script : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(Input.GetKeyDown(KeyCode.Z)){
+		if(Input.GetKeyDown(KeyCode.A)){
 			Application.LoadLevel(1);
 		}
-		if(Input.GetKeyDown(KeyCode.X)){
+		if(Input.GetKeyDown(KeyCode.B)){
 			Application.LoadLevel(2);
 		}
 	}
