@@ -149,11 +149,11 @@ public class SamusMovement : MonoBehaviour
 
 				health -= amount;
 				if (health <= 0) {
-						//Destroy(this.gameObject);
-						Debug.Log ("player died");
-						Application.LoadLevel(Application.loadedLevel);
+					Application.LoadLevel(4);
+				} else {
+					UpdateHealthCounter ();
 				}
-				UpdateHealthCounter ();
+				
 		}
 
 		void FixedUpdate ()
