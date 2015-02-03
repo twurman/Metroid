@@ -63,7 +63,7 @@ public class PE_Controller : MonoBehaviour {
 			}
 
 			if(Time.time > fuelRegenTime + 1f){
-				fuel += 5;
+				fuel += 10;
 				fuelRegenTime = Time.time;
 
 			}

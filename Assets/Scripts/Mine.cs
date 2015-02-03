@@ -8,7 +8,8 @@ public class Mine : MonoBehaviour {
 	private float destroyDelay = 3f;
 	private float explodeTime;
 	private bool exploding = false;
-	private float damage = 5f;
+	private float damageInner = 5f;
+	private float damageOuter = 3f;
 	private bool dealtDamage = false;
 	private float outerHitRadius = 2.5f;
 	private float innerHitRadius = 2f;
@@ -28,18 +29,18 @@ public class Mine : MonoBehaviour {
 				GetComponent<SpriteRenderer>().sprite = exploded;
 				foreach(Collider other in Physics.OverlapSphere(transform.position, innerHitRadius)){
 					if(!dealtDamage && other.gameObject.layer == LayerMask.NameToLayer("Player")){
-						other.GetComponent<SamusMovement>().CauseDamage(damage * 2);
+						other.GetComponent<SamusMovement>().CauseDamage(damageInner);
 						dealtDamage = true;
 					} if(other.gameObject.layer == LayerMask.NameToLayer("Enemy")){
-						other.GetComponent<Enemy>().CauseDamage(damage * 100000);
+						other.GetComponent<Enemy>().CauseDamage(damageInner * 100000);
 					}
 				}
 				foreach(Collider other in Physics.OverlapSphere(transform.position, outerHitRadius)){
 					if(!dealtDamage && other.gameObject.layer == LayerMask.NameToLayer("Player")){
-						other.GetComponent<SamusMovement>().CauseDamage(damage);
+						other.GetComponent<SamusMovement>().CauseDamage(damageOuter);
 						dealtDamage = true;
 					} if(other.gameObject.layer == LayerMask.NameToLayer("Enemy")){
-						other.GetComponent<Enemy>().CauseDamage(damage * 100000);
+						other.GetComponent<Enemy>().CauseDamage(damageOuter * 100000);
 					}
 				}
 
