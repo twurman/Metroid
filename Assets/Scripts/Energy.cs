@@ -18,7 +18,9 @@ public class Energy : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider other) {
-		other.GetComponent<SamusMovement>().CauseDamage(-1 * EnergyAmount);
-		Destroy(this.gameObject);
+		if (other.gameObject.layer == LayerMask.NameToLayer ("Player")) {
+			other.GetComponent<SamusMovement>().CauseDamage(-1 * EnergyAmount);
+			Destroy(this.gameObject);
+		}
 	}
 }
