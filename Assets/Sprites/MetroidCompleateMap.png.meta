@@ -6,6 +6,8 @@ TextureImporter:
     21300002: 5x1B
     21300004: 16x1B
     21300006: Door
+    21300008: Start_Up_Screen
+    21300010: End_Screen
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -84,6 +86,26 @@ TextureImporter:
         y: 289
         width: 48
         height: 48
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Start_Up_Screen
+      rect:
+        serializedVersion: 2
+        x: 254
+        y: 3057
+        width: 259
+        height: 239
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: End_Screen
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3057
+        width: 254
+        height: 239
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
