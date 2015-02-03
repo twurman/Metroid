@@ -23,7 +23,7 @@ public class FollowingCamera2 : MonoBehaviour {
 			if (target.position.x < x) {
 				destination.y = y;
 			} else {
-				destination.x = x + 9;
+				destination.x = x + 10;
 				destination.y = target.position.y > y ? target.position.y : y;
 			}
 			
