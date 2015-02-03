@@ -8,6 +8,10 @@ TextureImporter:
     21300006: Door
     21300008: Start_Up_Screen
     21300010: End_Screen
+    21300012: Door_unlocked_both
+    21300014: door_unlocked_left
+    21300016: door_unlocked_right
+    21300018: door_field
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -106,6 +110,46 @@ TextureImporter:
         y: 3057
         width: 254
         height: 239
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Door_unlocked_both
+      rect:
+        serializedVersion: 2
+        x: 1264
+        y: 289
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: door_unlocked_left
+      rect:
+        serializedVersion: 2
+        x: 1520
+        y: 289
+        width: 40
+        height: 48
+      alignment: 9
+      pivot: {x: .409999996, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: door_unlocked_right
+      rect:
+        serializedVersion: 2
+        x: 2792
+        y: 1969
+        width: 40
+        height: 48
+      alignment: 9
+      pivot: {x: .600000024, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: door_field
+      rect:
+        serializedVersion: 2
+        x: 2575
+        y: 3171
+        width: 9
+        height: 45
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
