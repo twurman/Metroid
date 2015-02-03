@@ -60,7 +60,7 @@ public class SamusMovement : MonoBehaviour
 				
 				if(transform.position.y > 12.5 && gravitySwap){
 						physEngine.gravity = new Vector3(0, 1f, 0);
-						GetComponent<PE_Controller>().maxSpeed = new Vector2(2f, 1f);
+						GetComponent<PE_Controller>().maxSpeed = new Vector2(2f, 1.2f);
 						GetComponent<PE_Controller>().floating = true;
 				}  else if(gravitySwap) {
 					physEngine.gravity = new Vector3(0, -9.8f, 0);
@@ -71,6 +71,7 @@ public class SamusMovement : MonoBehaviour
 				if (Input.GetKey(KeyCode.G)) {
 					invulnerable = true;
 					invuln_until = float.MaxValue;
+					GetComponent<PE_Controller>().jeremyMode = true;
 				}
 		
 		if (Input.GetButton ("Fire") && Time.time > nextFire && !crouching) {

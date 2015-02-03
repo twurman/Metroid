@@ -23,9 +23,11 @@ public class PE_Controller : MonoBehaviour {
 	public Vector2	maxSpeed = new Vector2( 10, 15 ); // Different x & y to limit maximum falling velocity
 	private bool 	adjustPos = false;
 	public bool		floating = false;
+	public bool		thrustEnabled = false;
 	public Text		fuelCounter;
 	public int 		fuel = 100;
 	public float	fuelRegenTime;
+	public bool		jeremyMode = false;
 
 	private PhysEngine physEngine;
 	
@@ -37,7 +39,12 @@ public class PE_Controller : MonoBehaviour {
 
 	private void UpdateFuelCounter ()
 	{
-		fuelCounter.text = "FUEL.." + fuel;
+		if(thrustEnabled){
+			fuelCounter.text = "FUEL.." + fuel;
+		} else {
+			fuelCounter.text = "";
+		}
+
 	}
 	
 	// Update is called once per frame
@@ -48,37 +55,38 @@ public class PE_Controller : MonoBehaviour {
 		
 		// Horizontal movement
 		if(floating){
-			if(fuel > 1000){
+			if(jeremyMode){
 				fuel = 1000;
-			} else if(fuel < 0) {
-				fuel = 0;
-			}
-
-			if(Time.time > fuelRegenTime + 1f){
-				fuel++;
-				fuelRegenTime = Time.time;
-
-			}
-
-			if(fuel > 0){
-				if(Input.GetAxis("Horizontal") > 0){
-					vel.x += 0.1f;
-					fuel--;
-				} else if(Input.GetAxis("Horizontal") < 0){
-					vel.x -= 0.1f;
-					fuel--;
+			} else {
+				if(fuel > 1000){
+					fuel = 1000;
+				} else if(fuel < 0) {
+					fuel = 0;
 				}
-				
-				if(Input.GetAxis("Vertical") > 0){
-					vel.y += 0.1f;
-				} else if(Input.GetAxis("Vertical") < 0){
-					vel.y -= 0.1f;
-					fuel -= 2;
+
+				if(Time.time > fuelRegenTime + 1f){
+					fuel++;
+					fuelRegenTime = Time.time;
+
+				}
+
+				if(fuel > 0){
+					if(Input.GetAxis("Horizontal") > 0){
+						vel.x += 0.1f;
+						fuel--;
+					} else if(Input.GetAxis("Horizontal") < 0){
+						vel.x -= 0.1f;
+						fuel--;
+					}
+					
+					if(Input.GetAxis("Vertical") > 0){
+						vel.y += 0.1f;
+					} else if(Input.GetAxis("Vertical") < 0){
+						vel.y -= 0.1f;
+						fuel -= 2;
+					}
 				}
 			}
-
-			UpdateFuelCounter();
-
 		} else {
 			float vX = Input.GetAxis("Horizontal"); // Returns a number [-1..1]
 			vel.x = vX * hSpeed;
@@ -113,6 +121,7 @@ public class PE_Controller : MonoBehaviour {
 		}
 		
 		peo.vel = vel;
+		UpdateFuelCounter();
 	}
 
 	void FixedUpdate(){
