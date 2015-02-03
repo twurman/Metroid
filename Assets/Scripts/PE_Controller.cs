@@ -56,38 +56,35 @@ public class PE_Controller : MonoBehaviour {
 		
 		// Horizontal movement
 		if(floating){
-			if(jeremyMode){
+			if(fuel > 1000){
 				fuel = 1000;
-			} else {
-				if(fuel > 1000){
-					fuel = 1000;
-				} else if(fuel < 0) {
-					fuel = 0;
+			} else if(fuel < 0) {
+				fuel = 0;
+			}
+
+			if(Time.time > fuelRegenTime + 1f){
+				fuel += 5;
+				fuelRegenTime = Time.time;
+
+			}
+
+			if(fuel > 0){
+				if(Input.GetAxis("Horizontal") > 0){
+					vel.x += 0.1f;
+					fuel--;
+				} else if(Input.GetAxis("Horizontal") < 0){
+					vel.x -= 0.1f;
+					fuel--;
 				}
-
-				if(Time.time > fuelRegenTime + 1f){
-					fuel += 5;
-					fuelRegenTime = Time.time;
-
-				}
-
-				if(fuel > 0){
-					if(Input.GetAxis("Horizontal") > 0){
-						vel.x += 0.1f;
-						fuel--;
-					} else if(Input.GetAxis("Horizontal") < 0){
-						vel.x -= 0.1f;
-						fuel--;
-					}
-					
-					if(Input.GetAxis("Vertical") > 0){
-						vel.y += 0.1f;
-					} else if(Input.GetAxis("Vertical") < 0){
-						vel.y -= 0.1f;
-						fuel -= 2;
-					}
+				
+				if(Input.GetAxis("Vertical") > 0){
+					vel.y += 0.1f;
+				} else if(Input.GetAxis("Vertical") < 0){
+					vel.y -= 0.1f;
+					fuel -= 2;
 				}
 			}
+
 		} else {
 			float vX = Input.GetAxis("Horizontal"); // Returns a number [-1..1]
 			vel.x = vX * hSpeed;
@@ -122,6 +119,9 @@ public class PE_Controller : MonoBehaviour {
 		}
 		
 		peo.vel = vel;
+		if(jeremyMode){
+			fuel = 1000;
+		}
 		UpdateFuelCounter();
 	}
 
