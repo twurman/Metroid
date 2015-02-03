@@ -5,6 +5,7 @@ TextureImporter:
     21300000: 1x4B
     21300002: 5x1B
     21300004: 16x1B
+    21300006: Door
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -73,6 +74,16 @@ TextureImporter:
         y: 947
         width: 254
         height: 14
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Door
+      rect:
+        serializedVersion: 2
+        x: 2536
+        y: 289
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
