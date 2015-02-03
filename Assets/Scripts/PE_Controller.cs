@@ -71,15 +71,17 @@ public class PE_Controller : MonoBehaviour {
 			if(fuel > 0){
 				if(Input.GetAxis("Horizontal") > 0){
 					vel.x += 0.1f;
-					fuel--;
+					if(vel.x < maxSpeed.x){
+						fuel--;
+					}
 				} else if(Input.GetAxis("Horizontal") < 0){
 					vel.x -= 0.1f;
-					fuel--;
+					if(vel.x > -maxSpeed.x){
+						fuel--;
+					}
 				}
 				
-				if(Input.GetAxis("Vertical") > 0){
-					vel.y += 0.1f;
-				} else if(Input.GetAxis("Vertical") < 0){
+				if(Input.GetAxis("Vertical") < 0){
 					vel.y -= 0.1f;
 					fuel -= 2;
 				}
