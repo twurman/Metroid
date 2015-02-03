@@ -27,6 +27,7 @@ public class Mine : MonoBehaviour {
 			} else if(Time.time >= explodeTime + delay){
 				GetComponent<SpriteRenderer>().color = Color.white;
 				GetComponent<SpriteRenderer>().sprite = exploded;
+				transform.Find ("Halo").renderer.material.color = Color.red;
 				foreach(Collider other in Physics.OverlapSphere(transform.position, innerHitRadius)){
 					if(!dealtDamage && other.gameObject.layer == LayerMask.NameToLayer("Player")){
 						other.GetComponent<SamusMovement>().CauseDamage(damageInner);
