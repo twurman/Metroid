@@ -56,9 +56,13 @@ public class SamusMovement : MonoBehaviour
 		void Update ()
 		{
 				if (invulnerable && Time.time > invuln_until) {
-					invulnerable = false;
+					if(!GetComponent<PE_Controller>().jeremyMode){
+						invulnerable = false;
+					}
 					GetComponent<PE_Obj>().acc.x = 0;
 				}
+
+				
 
 				
 				if(transform.position.y > 12.5 && gravitySwap){
@@ -143,14 +147,12 @@ public class SamusMovement : MonoBehaviour
 
 		public void CauseDamage (float amount)
 		{
-				if (invulnerable) {
-					return;
-				}
-			
 				if (amount > 0) {
 					invulnerable = true;
 					invuln_until = Time.time + InvulnerabilityAfterHitTime;
 				}
+
+				if(GetComponent<PE_Controller>().jeremyMode) return;
 
 
 				health -= amount;

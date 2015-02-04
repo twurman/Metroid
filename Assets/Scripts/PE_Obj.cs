@@ -55,7 +55,18 @@ public class PE_Obj : MonoBehaviour {
 	void Update () {
 		
 	}
-	
+
+	void LateUpdate(){
+		if(gameObject.layer == LayerMask.NameToLayer("Player") || gameObject.layer == LayerMask.NameToLayer("Enemy")){
+			if(Mathf.Abs((posFinal - pos0).magnitude) - Mathf.Abs(2 * vel0.magnitude * Time.deltaTime) >= 20f){
+				transform.position = pos0;
+				posFinal = pos1 = pos0;
+				vel = Vector3.zero;
+				print ("hackey fix");
+			}
+		}
+
+	}
 	
 	bool IgnoreCollision(Collider other) {
 		bool ignore = (other.GetComponent<Enemy> () != null && gameObject.layer == LayerMask.NameToLayer ("Player Bullet"))
