@@ -84,8 +84,16 @@ public class PE_Obj : MonoBehaviour {
 		
 		PE_Obj otherPEO = other.GetComponent<PE_Obj>();
 		if (otherPEO == null || IgnoreCollision(other)) return;
-		
-		ResolveCollisionWith(otherPEO);
+
+		if(other.gameObject.tag != "BreakableWall" 
+		   && ((gameObject.layer == LayerMask.NameToLayer("Player") && other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+		   || (gameObject.layer == LayerMask.NameToLayer("Player") && other.gameObject.layer == LayerMask.NameToLayer("Enemy Bullet")))){
+			ResolveCollisionWithEnemy(otherPEO);
+		} else {
+			ResolveCollisionWith(otherPEO);
+		}
+
+
 	}
 	
 	void OnTriggerStay(Collider other) {
@@ -120,7 +128,61 @@ public class PE_Obj : MonoBehaviour {
 	}
 	
 	public Vector3 a0, a1, b, delta, pU, posFinal; // a0-moving corner last frame, a1-moving corner now, b-comparison corner on other object
-	
+
+	void ResolveCollisionWithEnemy(PE_Obj that) {
+		
+		// Assumes that "that" is still
+		//		Vector3 posFinal;
+		posFinal = pos1; // Sets a defaut value for posFinal
+		
+		switch (this.coll) {
+		case PE_Collider.sphere:
+			
+			switch (that.coll) {
+			case PE_Collider.sphere:
+				// Sphere / Sphere collision
+				float thisR, thatR, rad;
+				// Note, this doesn't work with non-uniform or negative scales!
+				thisR = Mathf.Max( this.transform.lossyScale.x, this.transform.lossyScale.y, this.transform.lossyScale.z ) / 2;
+				thatR = Mathf.Max( that.transform.lossyScale.x, that.transform.lossyScale.y, that.transform.lossyScale.z ) / 2;
+				rad = thisR + thatR;
+				
+				Vector3 delta = pos1 - that.transform.position;
+				delta.Normalize();
+				delta *= rad;
+				
+				posFinal = that.transform.position + delta;
+				break;
+			}
+			
+			break;
+			
+		case PE_Collider.aabb:
+			
+			switch (that.coll) {
+			case PE_Collider.aabb:
+
+				if (that.transform.position.x >= transform.position.x) { // Hit on the right
+					vel.y = 10;
+					acc.x = -100;
+					break;
+				}
+				
+				if (that.transform.position.x < transform.position.x) { // Hit on the left
+					vel.y = 10;
+					acc.x = 100;
+					break;
+				}
+				
+				break;
+			}
+			
+			break;
+		}
+		
+		transform.position = pos1 = posFinal;
+	}
+
 	void ResolveCollisionWith(PE_Obj that) {
 		
 		// Assumes that "that" is still

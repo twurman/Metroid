@@ -57,6 +57,7 @@ public class SamusMovement : MonoBehaviour
 		{
 				if (invulnerable && Time.time > invuln_until) {
 					invulnerable = false;
+					GetComponent<PE_Obj>().acc.x = 0;
 				}
 
 				
@@ -158,7 +159,6 @@ public class SamusMovement : MonoBehaviour
 				} else {
 					UpdateHealthCounter ();
 				}
-				
 		}
 
 		void FixedUpdate ()
