@@ -46,6 +46,10 @@ public class PE_Obj : MonoBehaviour {
 		}
 	}
 
+	void Awake(){
+		collisions = new List<PE_Obj>();
+	}
+
 	void Start() {
 		if (PhysEngine.objs.IndexOf(this) == -1) {
 			_pos1 = _pos0 = transform.position;
@@ -56,6 +60,13 @@ public class PE_Obj : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 	
+	}
+
+	void LateUpdate(){
+		foreach(PE_Obj other in collisions){
+			ResolveCollisionWith(other);
+		}
+		collisions = new List<PE_Obj>();
 	}
 
 
@@ -86,8 +97,10 @@ public class PE_Obj : MonoBehaviour {
 		
 		PE_Obj otherPEO = other.GetComponent<PE_Obj>();
 		if (otherPEO == null || IgnoreCollision(other)) return;
-		
-		ResolveCollisionWith(otherPEO);
+
+		collisions.Add(otherPEO);
+
+//		ResolveCollisionWith(otherPEO);
 	}
 	
 	void OnTriggerStay(Collider other) {
