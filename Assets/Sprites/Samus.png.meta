@@ -10,6 +10,12 @@ TextureImporter:
     21300010: Samus_Ball_3
     21300012: Samus_Ball_4
     21300014: Samus_Upwards
+    21300016: Thrust_Samus
+    21300018: Thrust_Samus_Upwards
+    21300020: Thrust_Crouch1
+    21300022: Thrust_Crouch2
+    21300024: Thrust_Crouch3
+    21300026: Thrust_Crouch4
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -128,6 +134,66 @@ TextureImporter:
         y: 969
         width: 14
         height: 38
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Thrust_Samus
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 712
+        width: 20
+        height: 32
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Thrust_Samus_Upwards
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 712
+        width: 15
+        height: 38
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Thrust_Crouch1
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 712
+        width: 12
+        height: 13
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Thrust_Crouch2
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 712
+        width: 12
+        height: 13
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Thrust_Crouch3
+      rect:
+        serializedVersion: 2
+        x: 278
+        y: 712
+        width: 12
+        height: 13
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Thrust_Crouch4
+      rect:
+        serializedVersion: 2
+        x: 292
+        y: 712
+        width: 12
+        height: 13
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}

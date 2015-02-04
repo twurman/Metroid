@@ -2,7 +2,9 @@
 using System.Collections;
 
 public class ThrustPowerUp : MonoBehaviour {
-	
+
+	public Sprite standing, upwards, crouch1, crouch2, crouch3, crouch4;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -17,6 +19,12 @@ public class ThrustPowerUp : MonoBehaviour {
 		// Ignore bullet collisions, as they are handled by Enemy
 		if (other.gameObject.layer == LayerMask.NameToLayer ("Player")) {
 			other.GetComponent<PE_Controller>().thrustEnabled = true;
+			other.GetComponent<SamusMovement>().standing = standing;
+			other.GetComponent<SamusMovement>().upwards = upwards;
+			other.GetComponent<SamusMovement>().crouch1 = crouch1;
+			other.GetComponent<SamusMovement>().crouch2 = crouch2;
+			other.GetComponent<SamusMovement>().crouch3 = crouch3;
+			other.GetComponent<SamusMovement>().crouch4 = crouch4;
 			Destroy(this.gameObject);
 		}
 	}
