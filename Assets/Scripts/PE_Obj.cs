@@ -57,7 +57,7 @@ public class PE_Obj : MonoBehaviour {
 	}
 
 	void LateUpdate(){
-		if(gameObject.layer == LayerMask.NameToLayer("Player") || gameObject.layer == LayerMask.NameToLayer("Enemy")){
+		if(gameObject.layer == LayerMask.NameToLayer("Player")){
 			if(Mathf.Abs((posFinal - pos0).magnitude) - Mathf.Abs(2 * vel0.magnitude * Time.deltaTime) >= 20f){
 				transform.position = pos0;
 				posFinal = pos1 = pos0;
