@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 //using UnityEditor;
 
 
@@ -21,6 +22,7 @@ public class PE_Obj : MonoBehaviour {
 	public PE_Dir		dir = PE_Dir.still;
 
 	public PE_Obj		ground = null; // Stores whether this is on the ground
+	public List<PE_Obj> collisions;
 
 	public Vector3		pos0 {
 		get { return( _pos0); }
