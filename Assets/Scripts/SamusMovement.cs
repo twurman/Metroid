@@ -25,6 +25,8 @@ public class SamusMovement : MonoBehaviour
 		public bool invulnerable = false;
 		private float invuln_until = 0.0f;
 
+		public float BulletRange = 3f;
+
 		public enum Samus_Dir { // The direction in which the PE_Obj is moving
 			standing,
 			up,
@@ -97,7 +99,9 @@ public class SamusMovement : MonoBehaviour
 						}
 
 						clone.layer = LayerMask.NameToLayer ("Player Bullet");
-						clone.GetComponent<Bullet> ().damage = BulletDamage;
+						Bullet bullet = clone.GetComponent<Bullet>();
+						bullet.damage = BulletDamage;
+						bullet.maxDistance = BulletRange;
 				}
 		}
 
