@@ -81,7 +81,7 @@ public class Skree : PE_Obj {
 		}
 
 
-		if (other.gameObject.layer != LayerMask.NameToLayer ("Player Bullet")) {
+		if (other.gameObject.layer == LayerMask.NameToLayer ("Ground")) {
             collided = true;
 			acc.x = 0;
 			acc.y = 0;
