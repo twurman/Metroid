@@ -19,6 +19,7 @@ public class ThrustPowerUp : MonoBehaviour {
 		// Ignore bullet collisions, as they are handled by Enemy
 		if (other.gameObject.layer == LayerMask.NameToLayer ("Player")) {
 			other.GetComponent<PE_Controller>().thrustEnabled = true;
+			other.GetComponent<SamusMovement>().CrouchEnabled = false;
 			other.GetComponent<SamusMovement>().standing = standing;
 			other.GetComponent<SamusMovement>().upwards = upwards;
 			other.GetComponent<SamusMovement>().crouch1 = crouch1;
