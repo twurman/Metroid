@@ -146,49 +146,16 @@ public class PE_Obj : MonoBehaviour {
 		//		Vector3 posFinal;
 		posFinal = pos1; // Sets a defaut value for posFinal
 		
-		switch (this.coll) {
-		case PE_Collider.sphere:
-			
-			switch (that.coll) {
-			case PE_Collider.sphere:
-				// Sphere / Sphere collision
-				float thisR, thatR, rad;
-				// Note, this doesn't work with non-uniform or negative scales!
-				thisR = Mathf.Max( this.transform.lossyScale.x, this.transform.lossyScale.y, this.transform.lossyScale.z ) / 2;
-				thatR = Mathf.Max( that.transform.lossyScale.x, that.transform.lossyScale.y, that.transform.lossyScale.z ) / 2;
-				rad = thisR + thatR;
-				
-				Vector3 delta = pos1 - that.transform.position;
-				delta.Normalize();
-				delta *= rad;
-				
-				posFinal = that.transform.position + delta;
-				break;
-			}
-			
-			break;
-			
-		case PE_Collider.aabb:
-			
-			switch (that.coll) {
-			case PE_Collider.aabb:
+		if (that.transform.position.x >= transform.position.x) { // Hit on the right
+			acc.x = -100;
+		} else { // Hit on the left
+			acc.x = 100;
+		}
 
-				if (that.transform.position.x >= transform.position.x) { // Hit on the right
-					vel.y = 10;
-					acc.x = -100;
-					break;
-				}
-				
-				if (that.transform.position.x < transform.position.x) { // Hit on the left
-					vel.y = 10;
-					acc.x = 100;
-					break;
-				}
-				
-				break;
-			}
-			
-			break;
+		if(that.transform.position.y > transform.position.x){
+			vel.y = -2;
+		} else {
+			vel.y = 5;
 		}
 		
 		transform.position = pos1 = posFinal;
