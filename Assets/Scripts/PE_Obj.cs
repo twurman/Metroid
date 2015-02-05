@@ -153,9 +153,9 @@ public class PE_Obj : MonoBehaviour {
 		}
 
 		if(that.transform.position.y > transform.position.x){
-			vel.y = -2;
+			vel.y = -3;
 		} else {
-			vel.y = 5;
+			vel.y = 3;
 		}
 		
 		transform.position = pos1 = posFinal;
