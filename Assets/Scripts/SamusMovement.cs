@@ -55,10 +55,12 @@ public class SamusMovement : MonoBehaviour
 
 		void Update ()
 		{
+
 				if (invulnerable && Time.time > invuln_until) {
 					if(!GetComponent<PE_Controller>().jeremyMode){
 						invulnerable = false;
 					}
+					GetComponent<SpriteRenderer>().color = Color.white;
 					GetComponent<PE_Obj>().acc.x = 0;
 				}
 
@@ -150,9 +152,11 @@ public class SamusMovement : MonoBehaviour
 				if (amount > 0) {
 					invulnerable = true;
 					invuln_until = Time.time + InvulnerabilityAfterHitTime;
+					if(GetComponent<PE_Controller>().jeremyMode) return;
+					GetComponent<SpriteRenderer>().color = Color.gray;
 				}
 
-				if(GetComponent<PE_Controller>().jeremyMode) return;
+				
 
 
 				health -= amount;
