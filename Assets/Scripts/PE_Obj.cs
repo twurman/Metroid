@@ -147,9 +147,9 @@ public class PE_Obj : MonoBehaviour {
 		posFinal = pos1; // Sets a defaut value for posFinal
 		
 		if (that.transform.position.x >= transform.position.x) { // Hit on the right
-			acc.x = -100;
+			acc.x = -150;
 		} else { // Hit on the left
-			acc.x = 100;
+			acc.x = 150;
 		}
 
 		if(that.transform.position.y > transform.position.x){
