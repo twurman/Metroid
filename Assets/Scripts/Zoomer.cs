@@ -72,6 +72,10 @@ public class Zoomer : MonoBehaviour {
 		startMovement = true;
 	}
 
+	void OnBecameInvisible(){
+		startMovement = false;
+	}
+
 	// Update is called once per frame
 	void FixedUpdate () {
 		//Debug.Log(peo.vel + "," + peo.acc + "," + GroundDirection + "," + peo.velRel);
