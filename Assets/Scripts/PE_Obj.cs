@@ -21,12 +21,13 @@ public class PE_Obj : MonoBehaviour {
 	public PE_Dir		dir = PE_Dir.still;
 	
 	public PE_Obj		ground = null; // Stores whether this is on the ground
+	private int			num_collisions = 0;
 	
 	public Vector3		pos0 {
 		get { return( _pos0); }
 		set {
 			float d = (value - _pos0).magnitude;
-			if (d > 1 && gameObject.name == "PC") {
+			if (d > 1 && gameObject.layer == LayerMask.NameToLayer("Player")) {
 				Debug.Log ("Big change in pos0!");
 			}
 			_pos0 = value;
@@ -37,7 +38,7 @@ public class PE_Obj : MonoBehaviour {
 		get { return( _pos1); }
 		set {
 			float d = (value - _pos1).magnitude;
-			if (d > 1 && gameObject.name == "PC") {
+			if (d > 1 && gameObject.layer == LayerMask.NameToLayer("Player")) {
 				Debug.Log ("Big change in pos1!");
 			}
 			_pos1 = value;
@@ -53,19 +54,19 @@ public class PE_Obj : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+
 	}
 
 	void LateUpdate(){
 		if(gameObject.layer == LayerMask.NameToLayer("Player")){
-			if(Mathf.Abs((posFinal - pos0).magnitude) - Mathf.Abs(vel0.magnitude * Time.deltaTime) >= 10f){
+			if(num_collisions > 1 && (Mathf.Abs((posFinal - pos0).magnitude) - Mathf.Abs(vel0.magnitude * Time.deltaTime) > .01f)){
 				transform.position = pos0;
 				posFinal = pos1 = pos0;
 				vel = Vector3.zero;
 				print ("hackey fix");
 			}
+			num_collisions = 0;
 		}
-
 	}
 	
 	bool IgnoreCollision(Collider other) {
@@ -101,7 +102,9 @@ public class PE_Obj : MonoBehaviour {
 		   || (gameObject.layer == LayerMask.NameToLayer("Player") && other.gameObject.layer == LayerMask.NameToLayer("Enemy Bullet")))){
 			ResolveCollisionWithEnemy(otherPEO);
 		} else {
+			num_collisions++;
 			ResolveCollisionWith(otherPEO);
+
 		}
 
 
@@ -147,15 +150,15 @@ public class PE_Obj : MonoBehaviour {
 		posFinal = pos1; // Sets a defaut value for posFinal
 		
 		if (that.transform.position.x >= transform.position.x) { // Hit on the right
-			acc.x = -150;
+			acc.x = -120;
 		} else { // Hit on the left
-			acc.x = 150;
+			acc.x = 120;
 		}
 
 		if(that.transform.position.y > transform.position.x){
-			vel.y = -3;
+			vel.y = -5;
 		} else {
-			vel.y = 3;
+			vel.y = 5;
 		}
 		
 		transform.position = pos1 = posFinal;
@@ -215,7 +218,9 @@ public class PE_Obj : MonoBehaviour {
 						// Handle vel
 						vel.y = 0;
 						
-						if (ground == null) ground = that;
+						if (ground == null) {
+							ground = that;
+						} 
 					}
 					break; // Exit this switch statement: switch (that.coll)
 				}
