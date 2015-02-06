@@ -41,7 +41,11 @@ public class PE_Controller : MonoBehaviour {
 	{
 		if(!fuelCounter) return;
 		if(thrustEnabled){
-			fuelCounter.text = "FUEL.." + fuel;
+			if(fuel < 100){
+				fuelCounter.text = "FUEL..0" + fuel / 10;
+			} else {
+				fuelCounter.text = "FUEL.." + fuel / 10;
+			}
 		} else {
 			fuelCounter.text = "";
 		}
@@ -62,8 +66,8 @@ public class PE_Controller : MonoBehaviour {
 				
 			}
 
-			if(fuel > 1000){
-				fuel = 1000;
+			if(fuel > 999){
+				fuel = 999;
 			} else if(fuel < 0) {
 				fuel = 0;
 			}
