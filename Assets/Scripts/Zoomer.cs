@@ -33,10 +33,18 @@ public class Zoomer : MonoBehaviour {
 
 	private bool startMovement = false;
 
+
+	private Vector3 initial_position;
+	private Directions initial_direciton;
+
 	// Use this for initialization
 	void Start () {
 		peo = this.GetComponent<PE_Obj>();
 		enemy = this.GetComponent<Enemy>();
+
+		initial_position = this.transform.position;
+		initial_direciton = GroundDirection;
+
 		UpdateSpriteRotation();
 	}
 
@@ -72,6 +80,9 @@ public class Zoomer : MonoBehaviour {
 		startMovement = true;
 	}
 
+	public int counter = 0;
+	public int num_changes = 0;
+
 	// Update is called once per frame
 	void FixedUpdate () {
 		//Debug.Log(peo.vel + "," + peo.acc + "," + GroundDirection + "," + peo.velRel);
@@ -80,6 +91,11 @@ public class Zoomer : MonoBehaviour {
 		if(!startMovement || enemy.frozen) return;
 
 		bool direction_changed = false;
+
+		if (counter++ >= 50) {
+			counter = 0;
+			num_changes = 0;
+		}
 
 		if (stuck_position != null) {
 			if ((transform.position - stuck_position).magnitude > DirChangeForStuck) {
@@ -172,11 +188,20 @@ public class Zoomer : MonoBehaviour {
 		}
 
 		if (direction_changed) {
+			num_changes += 1;
+
 			established = false;
 			peo.vel = Vector3.zero;
 			frames_stopped = 0;
 			peo.acc = Vector3.zero;
 			UpdateSpriteRotation();
+		}
+
+		if (num_changes >= 7) {
+			Debug.Log ("stuck");
+
+			PhysEngine.objs.Remove(peo);
+			Destroy(this.gameObject);
 		}
 	}
 }
