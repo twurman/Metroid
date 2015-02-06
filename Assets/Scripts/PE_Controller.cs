@@ -56,17 +56,19 @@ public class PE_Controller : MonoBehaviour {
 		
 		// Horizontal movement
 		if(floating){
+			if(Time.time > fuelRegenTime + .5f){
+				fuel += 1;
+				fuelRegenTime = Time.time;
+				
+			}
+
 			if(fuel > 1000){
 				fuel = 1000;
 			} else if(fuel < 0) {
 				fuel = 0;
 			}
 
-			if(Time.time > fuelRegenTime + 1f){
-				fuel += 10;
-				fuelRegenTime = Time.time;
 
-			}
 
 			if(fuel > 0){
 				if(Input.GetAxis("Horizontal") > 0){
