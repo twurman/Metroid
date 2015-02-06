@@ -84,6 +84,9 @@ public class Enemy : MonoBehaviour {
 		if (other.gameObject.layer == LayerMask.NameToLayer ("Player Bullet")) {
 			CauseDamage(other.GetComponent<Bullet>().damage);
 			ChangeSprite(true);
+			if(this.GetComponent<Skree>()){
+				this.GetComponent<Skree>().bullet_release_time += frozen_duration;
+			}
 
 			if (!frozen) {
 				frozen = true;

@@ -21,7 +21,7 @@ public class Skree : PE_Obj {
 
 	public float Acceleration = 1f;
 
-	private float bullet_release_time = 0f;
+	public float bullet_release_time = 0f;
 
 	public float bullet_delay = 0.2f;
 
