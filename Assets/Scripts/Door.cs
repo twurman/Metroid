@@ -20,7 +20,7 @@ public class Door : MonoBehaviour {
 	public float right_unlocked_until;
 	public int num_hits_left_right;
 
-	private bool player_inside = false;
+	public bool player_inside = false;
 
 	// Use this for initialization
 	void Start () {
@@ -83,6 +83,12 @@ public class Door : MonoBehaviour {
 			Destroy(other.gameObject);
 		}
 
+		if (other.gameObject.layer == LayerMask.NameToLayer ("Player") && (left_side_unlocked || right_side_unlocked))  {
+			player_inside = true;
+		}
+	}
+
+	void OnTriggerStay(Collider other) {
 		if (other.gameObject.layer == LayerMask.NameToLayer ("Player") && (left_side_unlocked || right_side_unlocked))  {
 			player_inside = true;
 		}
