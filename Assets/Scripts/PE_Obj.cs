@@ -27,7 +27,7 @@ public class PE_Obj : MonoBehaviour {
 		get { return( _pos0); }
 		set {
 			float d = (value - _pos0).magnitude;
-			if (d > 1 && (gameObject.layer==LayerMask.NameToLayer("Player") || gameObject.layer==LayerMask.NameToLayer("Enemy"))) {
+			if (d > 1 && (gameObject.layer==LayerMask.NameToLayer("Player") )) {
 				Debug.Log ("Big change in pos0!");
 			} else {
 				_pos0 = value;
@@ -39,7 +39,7 @@ public class PE_Obj : MonoBehaviour {
 		get { return( _pos1); }
 		set {
 			float d = (value - _pos1).magnitude;
-			if (d > 1 && (gameObject.layer==LayerMask.NameToLayer("Player") || gameObject.layer==LayerMask.NameToLayer("Enemy"))) {
+			if (d > 1 && (gameObject.layer==LayerMask.NameToLayer("Player") )) {
 				Debug.Log ("Big change in pos1!");
 			} else {
 				_pos1 = value;
