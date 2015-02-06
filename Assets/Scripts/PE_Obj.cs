@@ -157,10 +157,10 @@ public class PE_Obj : MonoBehaviour {
 			acc.x = 120;
 		}
 
-		if(that.transform.position.y > transform.position.x){
-			vel.y = -5;
+		if(that.transform.position.y > transform.position.y + 1){
+			vel.y = -4;
 		} else {
-			vel.y = 5;
+			vel.y = 4;
 		}
 		
 		transform.position = pos1 = posFinal;
