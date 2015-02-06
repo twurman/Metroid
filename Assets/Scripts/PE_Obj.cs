@@ -150,7 +150,6 @@ public class PE_Obj : MonoBehaviour {
 		// Assumes that "that" is still
 		//		Vector3 posFinal;
 		posFinal = pos1; // Sets a defaut value for posFinal
-		
 		if (that.transform.position.x >= transform.position.x) { // Hit on the right
 			acc.x = -120;
 		} else { // Hit on the left

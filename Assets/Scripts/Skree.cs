@@ -31,7 +31,6 @@ public class Skree : PE_Obj {
 		if (Mathf.Abs(player.transform.position.x - this.gameObject.transform.position.x) < AttackDistanceX
 		    && Mathf.Abs(player.transform.position.y - this.gameObject.transform.position.y) < AttackDistanceY) {
 			this.grav = PE_GravType.constant;
-			acc.y -= 0.5f;
 			falling = true;
 		}
 	}
