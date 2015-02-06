@@ -94,6 +94,7 @@ public class PE_Controller : MonoBehaviour {
 
 		// handle jump
 		if(grounded){
+			peo.acc.x = 0;
 			jumpStart = peo.pos0.y;
 			falling = false;
 			if(Input.GetKeyDown(KeyCode.X) || Input.GetKeyDown(KeyCode.Period)){

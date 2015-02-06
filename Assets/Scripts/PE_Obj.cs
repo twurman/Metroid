@@ -29,8 +29,9 @@ public class PE_Obj : MonoBehaviour {
 			float d = (value - _pos0).magnitude;
 			if (d > 1 && gameObject.layer == LayerMask.NameToLayer("Player")) {
 				Debug.Log ("Big change in pos0!");
+			} else {
+				_pos0 = value;
 			}
-			_pos0 = value;
 		}
 	}
 	
@@ -40,8 +41,9 @@ public class PE_Obj : MonoBehaviour {
 			float d = (value - _pos1).magnitude;
 			if (d > 1 && gameObject.layer == LayerMask.NameToLayer("Player")) {
 				Debug.Log ("Big change in pos1!");
+			} else {
+				_pos1 = value;
 			}
-			_pos1 = value;
 		}
 	}
 	
@@ -58,15 +60,15 @@ public class PE_Obj : MonoBehaviour {
 	}
 
 	void LateUpdate(){
-		if(gameObject.layer == LayerMask.NameToLayer("Player")){
-			if(num_collisions > 1 && (Mathf.Abs((posFinal - pos0).magnitude) - Mathf.Abs(vel0.magnitude * Time.deltaTime) > .01f)){
-				transform.position = pos0;
-				posFinal = pos1 = pos0;
-				vel = Vector3.zero;
-				print ("hackey fix");
-			}
-			num_collisions = 0;
-		}
+//		if(gameObject.layer == LayerMask.NameToLayer("Player")){
+//			if(num_collisions > 1 && (Mathf.Abs((posFinal - pos0).magnitude) - Mathf.Abs(vel0.magnitude * Time.deltaTime) > .01f)){
+//				transform.position = pos0;
+//				posFinal = pos1 = pos0;
+//				vel = Vector3.zero;
+//				print ("hackey fix");
+//			}
+//			num_collisions = 0;
+//		}
 	}
 	
 	bool IgnoreCollision(Collider other) {
